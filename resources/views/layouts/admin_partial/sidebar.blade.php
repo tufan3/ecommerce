@@ -1,7 +1,11 @@
+@php
+    $setting = DB::table('settings')->first()
+@endphp
+
 <aside class="main-sidebar sidebar-dark-primary elevation-4" style="">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link">
-      <img src="{{ asset('public/backend') }}/dist/img/AdminLTELogo.png" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
+    <a href="{{ route('admin.home') }}" class="brand-link">
+      <img src="{{ url($setting->favicon) }}" alt="" class="brand-image img-circle elevation-3" style="opacity: .8">
       <span class="brand-text font-weight-light">E-Commerce</span>
     </a>
 
@@ -30,11 +34,14 @@
               </p>
             </a>
           </li>
+
+
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-list-alt"></i>
               <p>
                 Category
+                {{-- Category Management --}}
                 <i class="fas fa-angle-left right"></i>
               </p>
             </a>
@@ -63,8 +70,41 @@
                   <p>Brand</p>
                 </a>
               </li>
+
+              <li class="nav-item">
+                <a href="{{ route('warehouse.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Warehouse</p>
+                </a>
+              </li>
             </ul>
           </li>
+
+          {{-- coupon part --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-gift"></i>
+              <p>
+                Offer
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('coupon.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Coupon</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="#" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>E-Camaign</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- coupon part --}}
 
           {{-- setting part --}}
           <li class="nav-item">
@@ -83,9 +123,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="{{ route('subcategory.index') }}" class="nav-link">
+                <a href="{{ route('website.setting') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>Website Settingy</p>
+                  <p>Website Setting</p>
                 </a>
               </li>
               <li class="nav-item">

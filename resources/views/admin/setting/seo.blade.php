@@ -50,7 +50,7 @@
 
                                             <div class="form-group">
                                                 <label for="meta_tag">Meta Tag</label>
-                                                <input type="text" class="form-control" id="meta_tag"Tag
+                                                <input type="text" class="form-control" id="meta_tag"
                                                     name="meta_tag" placeholder="Meta Tag"
                                                     value="{{ $data->meta_tag }}">
                                             </div>
@@ -58,7 +58,7 @@
 
                                             <div class="form-group">
                                                 <label for="meta_keyword">Meta Keyword</label>
-                                                <input type="text" class="form-control" id="meta_keyword"Tag
+                                                <input type="text" class="form-control" id="meta_keyword"
                                                     name="meta_keyword" placeholder="Meta Keyword"
                                                     value="{{ $data->meta_keyword }}">
                                                     <small style="color: rgb(189, 44, 44);">example: ecommerce, online shop, online maket</small>

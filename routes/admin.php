@@ -15,7 +15,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
     Route::get('/admin/password/change', 'AdminController@password_change')->name('admin.password.change');
     Route::post('/admin/password/update', 'AdminController@password_update')->name('admin.password.update');
 
-    //__category route
+//__category route
     Route::group(['prefix' => 'category'], function (){
         Route::get('/', 'CategoryController@index')->name('category.index');
         Route::post('/store', 'CategoryController@store')->name('category.store');
@@ -24,7 +24,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::post('/update', 'CategoryController@update')->name('category.update');
     });
 
-    //__sub category route
+//__sub category route
     Route::group(['prefix' => 'subcategory'], function (){
         Route::get('/', 'SubcategoryController@index')->name('subcategory.index');
         Route::post('/store', 'SubcategoryController@store')->name('subcategory.store');
@@ -33,7 +33,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::post('/update', 'SubcategoryController@update')->name('subcategory.update');
     });
 
-    // child category route
+// child category route
     Route::group(['prefix' => 'childcategory'], function (){
         Route::get('/', 'ChildcategoryController@index')->name('childcategory.index');
         Route::post('/store', 'ChildcategoryController@store')->name('childcategory.store');
@@ -42,7 +42,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::post('/update', 'ChildcategoryController@update')->name('childcategory.update');
     });
 
-    // brand route
+// brand route
     Route::group(['prefix' => 'brand'], function (){
         Route::get('/', 'brandController@index')->name('brand.index');
         Route::post('/store', 'brandController@store')->name('brand.store');
@@ -51,21 +51,47 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::post('/update', 'brandController@update')->name('brand.update');
     });
 
-    //__setting route
+//__warehouse route
+    Route::group(['prefix' => 'warehouse'], function (){
+        Route::get('/', 'WarehouseController@index')->name('warehouse.index');
+        Route::post('/store', 'WarehouseController@store')->name('warehouse.store');
+        Route::get('/delete/{id}', 'WarehouseController@destroy')->name('warehouse.delete');
+        Route::get('/edit/{id}', 'WarehouseController@edit');
+        Route::post('/update', 'WarehouseController@update')->name('warehouse.update');
+    });
+
+
+// coupon route
+    Route::group(['prefix' => 'coupon'], function (){
+        Route::get('/', 'CouponController@index')->name('coupon.index');
+        Route::post('/store', 'CouponController@store')->name('coupon.store');
+        Route::delete('/delete/{id}', 'CouponController@destroy')->name('coupon.delete');
+        Route::get('/edit/{id}', 'CouponController@edit');
+        Route::post('/update', 'CouponController@update')->name('coupon.update');
+    });
+
+
+// __setting route__//
     Route::group(['prefix' => 'setting'], function (){
-        //__seo route
+    //__seo route
         Route::group(['prefix' => 'seo'], function (){
             Route::get('/', 'SettingController@seoSetting')->name('seo.setting');
             Route::post('/Update/{id}', 'SettingController@seoSettingUpdate')->name('seo.setting.update');
         });
 
-        //__smtp route
+    //__smtp route
         Route::group(['prefix' => 'smtp'], function (){
             Route::get('/', 'SettingController@smtpSetting')->name('smtp.setting');
-            Route::post('/Update/{id}', 'SettingController@smtpSettingUpdate')->name('seo.setting.update');
+            Route::post('/Update/{id}', 'SettingController@smtpSettingUpdate')->name('smtp.setting.update');
         });
 
-        //__page route
+    //__website setting route
+         Route::group(['prefix' => 'website'], function (){
+            Route::get('/', 'SettingController@websiteSetting')->name('website.setting');
+            Route::post('/Update/{id}', 'SettingController@websiteSettingUpdate')->name('website.setting.update');
+        });
+
+    //__page route
         Route::group(['prefix' => 'page'], function (){
             Route::get('/', 'PageController@index')->name('page.index');
             Route::get('/create', 'PageController@create')->name('page.create');

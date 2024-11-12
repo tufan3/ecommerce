@@ -5,7 +5,8 @@
         <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
       </li>
       <li class="nav-item d-none d-sm-inline-block">
-        <a href="{{ route('admin.logout') }}" class="nav-link" id="logout">Logout</a>
+        <a href="{{ route('admin.home') }}" class="nav-link">Home</a>
+        {{-- <a href="{{ route('admin.logout') }}" class="nav-link" id="logout">Logout</a> --}}
         {{-- <a href="{{ route('logout') }}" class="nav-link" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><p>Logout</p></a>
           <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
               @csrf

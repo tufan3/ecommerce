@@ -30,7 +30,7 @@
                             <div class="card-header">
                                 <h3 class="card-title">SMTP Mail Setting</h3>
                             </div>
-                            <form action="{{ route('seo.setting.update', $smtp->id) }}" method="post">
+                            <form action="{{ route('smtp.setting.update', $smtp->id) }}" method="post">
                                 @csrf
                                 <div class="card-body">
                                     <div class="form-group">
