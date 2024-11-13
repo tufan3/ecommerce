@@ -106,6 +106,26 @@
           </li>
           {{-- coupon part --}}
 
+          {{-- pickup point part --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-truck"></i>
+              <p>
+                Pickup Point
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('pickuppoint.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Pickup Point</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- pickup point part --}}
+
           {{-- setting part --}}
           <li class="nav-item">
             <a href="#" class="nav-link">

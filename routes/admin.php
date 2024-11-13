@@ -70,6 +70,15 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::post('/update', 'CouponController@update')->name('coupon.update');
     });
 
+// pickup point route
+    Route::group(['prefix' => 'pickup-point'], function (){
+        Route::get('/', 'PickupController@index')->name('pickuppoint.index');
+        Route::post('/store', 'PickupController@store')->name('pickuppoint.store');
+        Route::delete('/delete/{id}', 'PickupController@destroy')->name('pickuppoint.delete');
+        Route::get('/edit/{id}', 'PickupController@edit');
+        Route::post('/update', 'PickupController@update')->name('pickuppoint.update');
+    });
+
 
 // __setting route__//
     Route::group(['prefix' => 'setting'], function (){

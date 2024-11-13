@@ -36,6 +36,8 @@ class CouponController extends Controller
         return view('admin.offer.coupon.index');
     }
     //__ coupon index__//
+
+
     //__ coupon store//
     public function store(Request $request)
     {
@@ -59,6 +61,8 @@ class CouponController extends Controller
             return response()->json('Coupon created successfully.');
         }
     //__ coupon store//
+
+
     //__ coupon edit//
     public function edit($id)
     {
@@ -73,6 +77,9 @@ class CouponController extends Controller
     {
         $request->validate([
             'coupon_code' => 'required|unique:coupons,coupon_code,' . $request->id,
+            'coupon_amount' => 'required',
+            'type' => 'required',
+            'valid_date' => 'required',
         ], [
             'coupon_code.unique' => 'This coupon code already exists.',
         ]);
