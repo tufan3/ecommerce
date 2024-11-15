@@ -90,7 +90,7 @@
                         <div class="form-group">
                             <label for="brand_name" class="form-label">Brand Logo</label>
                             {{-- <input type="file" class="form-control" name="brand_logo" id=""> --}}
-                            <input type="file" class="dropify" name="brand_logo" data-height="140" data-width="140" />
+                            <input type="file" class="dropify" name="brand_logo" data-height="140" data-width="140" required/>
                         </div>
 
                     </div>

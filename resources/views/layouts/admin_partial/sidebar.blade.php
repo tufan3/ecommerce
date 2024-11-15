@@ -10,7 +10,8 @@
     </a>
 
     <!-- Sidebar -->
-    <div class="sidebar mt-0">
+    <div class="sidebar">
+    {{-- <div class="sidebar mt-0"> --}}
       <!-- Sidebar user panel (optional) -->
       <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
@@ -79,6 +80,32 @@
               </li>
             </ul>
           </li>
+
+          {{-- product part --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fab fa-product-hunt"></i>
+              <p>
+                Product
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('product.create') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>New Product</p>
+                </a>
+              </li>
+              <li class="nav-item">
+                <a href="{{ route('product.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Manage Product</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- product part --}}
 
           {{-- coupon part --}}
           <li class="nav-item">

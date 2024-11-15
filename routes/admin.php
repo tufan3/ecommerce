@@ -23,6 +23,8 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::get('/edit/{id}', 'CategoryController@edit');
         Route::post('/update', 'CategoryController@update')->name('category.update');
     });
+// global route
+    Route::get('/getChildCategories/{id}', 'ProductController@getChildCategories')->name('getChildCategories');
 
 //__sub category route
     Route::group(['prefix' => 'subcategory'], function (){
@@ -58,6 +60,23 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::get('/delete/{id}', 'WarehouseController@destroy')->name('warehouse.delete');
         Route::get('/edit/{id}', 'WarehouseController@edit');
         Route::post('/update', 'WarehouseController@update')->name('warehouse.update');
+    });
+
+// product route
+    Route::group(['prefix' => 'product'], function (){
+        Route::get('/', 'ProductController@index')->name('product.index');
+        Route::get('/create', 'ProductController@create')->name('product.create');
+        Route::post('/store', 'ProductController@store')->name('product.store');
+        Route::get('/delete/{id}', 'ProductController@destroy')->name('product.delete');
+        // Route::get('/edit/{id}', 'ProductController@edit');
+        // Route::post('/update', 'ProductController@update')->name('product.update');
+
+
+        //
+        Route::post('/featured', 'ProductController@featured')->name('product.featured');
+        Route::post('/today-deal', 'ProductController@todayDeal')->name('product.todayDeal');
+        Route::post('/status', 'ProductController@status')->name('product.status');
+
     });
 
 

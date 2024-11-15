@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Subcategory;
 use App\Models\Childcategory;
+use App\Models\Product;
 class Category extends Model
 {
     use HasFactory;
@@ -20,5 +21,9 @@ class Category extends Model
 
         public function childcategory(){
             return $this->hasMany(Childcategory::class);
+        }
+
+        public function product(){
+            return $this->hasMany(Product::class);
         }
 }

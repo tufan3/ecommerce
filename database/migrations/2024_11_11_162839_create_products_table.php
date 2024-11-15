@@ -19,10 +19,14 @@ class CreateProductsTable extends Migration
             $table->unsignedBigInteger('subcategory_id');
             $table->integer('childcategory_id')->nullable();
             $table->integer('brand_id')->nullable();
+            $table->integer('pickup_point_id')->nullable();
             $table->string('product_name');
+            $table->string('product_slug');
             $table->string('product_code');
             $table->string('product_unit')->nullable();
             $table->string('product_tags')->nullable();
+            $table->string('color')->nullable();
+            $table->string('size')->nullable();
             $table->string('product_video')->nullable();
             $table->string('product_image')->nullable();
             $table->string('product_thumbnail')->nullable();
@@ -38,6 +42,8 @@ class CreateProductsTable extends Migration
             $table->integer('flash_deal_id')->nullable();
             $table->integer('cash_on_delivery')->nullable();
             $table->integer('user_id')->nullable();
+            $table->integer('date')->nullable();
+            $table->integer('month')->nullable();
             $table->timestamps();
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('cascade');
             $table->foreign('subcategory_id')->references('id')->on('subcategories')->onDelete('cascade');

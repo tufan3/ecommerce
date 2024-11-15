@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard 2</title>
+    <title>Dashboard</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -47,14 +47,16 @@
 <!-- summernote -->
 <link rel="stylesheet" href="{{ asset('public/backend') }}/plugins/summernote/summernote-bs4.min.css">
 
+<!-- Bootstrap Tags Input CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.css" rel="stylesheet">
 
 </head>
 
-<body>
-{{-- <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed"> --}}
+{{-- <body> --}}
+<body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     @guest
     @else
-    <div class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
+    {{-- <div class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed"> --}}
 
         <div class="wrapper">
 
@@ -79,12 +81,14 @@
         <!-- /.control-sidebar -->
 
         <!-- Main Footer -->
+       <div>
         @include('layouts.admin_partial.footer')
+       </div>
         <!-- Een Main Footer -->
 
     </div>
     <!-- ./wrapper -->
-    </div>
+    {{-- </div> --}}
 
     <!-- REQUIRED SCRIPTS -->
     <!-- jQuery -->
@@ -146,6 +150,9 @@
 <script src="{{ asset('public/backend') }}/plugins/summernote/summernote-bs4.min.js"></script>
 
 
+<!-- Bootstrap Tags Input JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-tagsinput/0.8.0/bootstrap-tagsinput.min.js"></script>
+
 <script>
     $(function () {
       // Summernote
@@ -157,6 +164,8 @@
     //     theme: "monokai"
     //   });
     })
+
+
   </script>
 
  <script>
@@ -173,11 +182,10 @@ messages: {
 
 <script>
     $(document).on('click', '#delete', function(e) {
-        e.preventDefault(); // Prevent default action (i.e., navigating to the href)
+        e.preventDefault();
 
-        var link = $(this).attr("href"); // Store the link to redirect if confirmed
+        var link = $(this).attr("href");
 
-        // Display the SweetAlert confirmation dialog
         swal({
             title: "Are you sure you want to delete?",
             text: "This action cannot be undone.",
@@ -186,10 +194,10 @@ messages: {
             dangerMode: true,
         }).then((willDelete) => {
             if (willDelete) {
-                // Redirect to the link if confirmed
+
                 window.location.href = link;
             } else {
-                // Show a message if the action was cancelled
+
                 swal("Action canceled!");
             }
         });
@@ -278,6 +286,8 @@ messages: {
       });
     });
   </script>
+
+{{-- @stack('scripts') --}}
 
 </body>
 
