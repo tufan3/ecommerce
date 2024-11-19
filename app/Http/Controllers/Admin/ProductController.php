@@ -5,7 +5,9 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Pickup_point;
 use App\Models\Product;
+use App\Models\Subcategory;
 use App\Models\Warehouse;
 use Illuminate\Http\Request;
 use DB;
@@ -98,7 +100,7 @@ class ProductController extends Controller
                 ->addColumn('action', function ($row) {
                     $actionbtn = '<a href="#" class="btn btn-primary btn-sm edit" ><i class="fas fa-eye"></i></a>
 
-                    <a href="#" class="btn btn-info btn-sm edit" ><i class="fas fa-edit"></i></a>
+                    <a href="' . route('product.edit', [$row->id]) . '" class="btn btn-info btn-sm" ><i class="fas fa-edit"></i></a>
 
                     <a href="' . route('product.delete', [$row->id]) . '" id="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>';
                     return $actionbtn;
@@ -170,6 +172,7 @@ class ProductController extends Controller
         $product->today_deal = $request->today_deal;
         $product->product_video = $request->product_video;
         $product->status = $request->status;
+        $product->product_slider = $request->product_slider;
         $product->user_id = auth()->user()->id;
         $product->date = date('d-m-Y');
         $product->month = date('F');
@@ -203,6 +206,21 @@ class ProductController extends Controller
         // return redirect()->route('product.index')->with('success', 'Product created successfully');
     }
     //__product store__//
+
+
+    //__product edit__//
+    public function edit($id)
+    {
+
+        $product = Product::find($id);
+        $category = Category::all();
+        $brand = Brand::all();
+        $warehouse = Warehouse::all();
+        $pickup_point = Pickup_point::all();
+        return view('admin.product.edit', compact('product','category','brand', 'warehouse','pickup_point'));
+    }
+    //__product edit__//
+
 
 
     //__product delete__//

@@ -227,10 +227,10 @@
                                             <textarea name="description" class="form-control textarea summernote" cols="" placeholder="Enter product details">{{ old('description') }}</textarea>
                                         </div>
 
-                                        <!-- Product Details -->
+                                        <!-- Product video -->
                                         <div class="form-group">
                                             <label>Video Embed Code</label>
-                                            <textarea name="product_video" class="form-control" rows="3" placeholder="Enter product details">{{ old('purchase_video') }}</textarea>
+                                            <input name="product_video" class="form-control" placeholder="Only use embed code" value="{{ old('product_video') }}">
                                         </div>
 
                                     </div>
@@ -278,6 +278,11 @@
                                         <div class="form-group">
                                             <label for="toggle-switch">Today Deal</label><br>
                                             <input type="checkbox" checked data-toggle="toggle" data-on="ON" data-off="OFF" data-onstyle="success" data-offstyle="danger" id="toggle-switch" name="today_deal" value="1">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="toggle-switch">Slider Product</label><br>
+                                            <input type="checkbox" data-toggle="toggle" data-on="ON" data-off="OFF" data-onstyle="success" data-offstyle="danger" id="toggle-switch" name="product_slider" value="1">
                                         </div>
 
                                         <div class="form-group">

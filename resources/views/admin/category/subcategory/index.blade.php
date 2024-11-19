@@ -87,7 +87,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="category_id" class="form-label">Catrgory Name</label>
-                            <select name="category_id" id="" class="form-control">
+                            <select name="category_id" id="" class="form-control" required>
                                 <option value="">----SELECT----</option>
                                 @foreach($category as $sub_data)
                                 <option value="{{ $sub_data->id }}">{{ $sub_data->category_name}}</option>
@@ -97,7 +97,7 @@
 
                         <div class="form-group">
                             <label for="subcategory_name" class="form-label">Sub Catrgory Name</label>
-                            <input type="text" class="form-control @error('subcategory_name') is-invalid @enderror" id="subcategory_name" name="subcategory_name" placeholder="Sub Category Name" value="">
+                            <input type="text" class="form-control @error('subcategory_name') is-invalid @enderror" id="subcategory_name" name="subcategory_name" placeholder="Sub Category Name" value="" required>
 
                             @error('subcategory_name')
                                 <span class="invalid-feedback"><strong>{{ $message }}</strong></span>

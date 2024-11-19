@@ -12,7 +12,7 @@ class Pickup_point extends Model
 
     protected $table = 'pickup_points';
     protected $fillable = [
-        'warehouse_name', 'warehouse_address', 'warehouse_phone',
+        'pickup_point_name', 'pickup_point_address', 'pickup_point_phone','pickup_point_phone_two',
     ];
 
 

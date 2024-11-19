@@ -39,6 +39,7 @@ class CreateProductsTable extends Migration
             $table->integer('featured')->nullable();
             $table->integer('today_deal')->nullable();
             $table->integer('status')->nullable();
+            $table->integer('product_slider')->nullable()->default(0);
             $table->integer('flash_deal_id')->nullable();
             $table->integer('cash_on_delivery')->nullable();
             $table->integer('user_id')->nullable();

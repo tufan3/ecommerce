@@ -15,7 +15,7 @@ class Product extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'category_id', 'subcategory_id', 'childcategory_id', 'pickup_point_id', 'brand_id', 'product_name', 'product_code', 'product_unit', 'product_tags', 'color', 'size', 'product_video', 'product_image', 'product_thumbnail', 'description', 'purchase_price', 'selling_price', 'discount_price', 'stock_quantity', 'warehouse', 'featured', 'today_deal', 'status', 'admin_id',
+        'category_id', 'subcategory_id', 'childcategory_id', 'pickup_point_id', 'brand_id', 'product_name', 'product_code', 'product_unit', 'product_tags', 'color', 'size', 'product_video', 'product_image', 'product_thumbnail', 'description', 'purchase_price', 'selling_price', 'discount_price', 'stock_quantity', 'warehouse', 'featured', 'today_deal', 'status', 'admin_id','product_slider',
     ];
 
     public function category(){

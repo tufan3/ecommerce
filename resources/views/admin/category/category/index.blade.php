@@ -85,7 +85,7 @@
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="category_name" class="form-label">Catrgory Name</label>
-                            <input type="text" class="form-control @error('category_name') is-invalid @enderror" id="category_name" name="category_name" placeholder="Category Name" value="">
+                            <input type="text" class="form-control @error('category_name') is-invalid @enderror" id="category_name" name="category_name" placeholder="Category Name" value="" required>
 
                             @error('category_name')
                                 <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
@@ -119,7 +119,7 @@
                         <div class="form-group">
                             <label for="category_name" class="form-label">Catrgory Name</label>
                             <input type="text" class="form-control @error('category_name') is-invalid @enderror" id="e_category_name" name="category_name" placeholder="Category Name" value="">
-                            <input type="hidden" id="e_category_id" name="id">
+                            <input type="hidden" id="e_category_id" name="id" required>
 
                             @error('category_name')
                                 <span class="invalid-feedback"><strong>{{ $message }}</strong></span>

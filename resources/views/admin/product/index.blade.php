@@ -197,17 +197,17 @@
             $('#ytable').DataTable().ajax.reload();
         });
 
-        $('body').on('click', '.edit', function() {
-            var brand_id = $(this).data('id');
-            // alert(brand_id);
-            $.ajax({
-                type: 'GET',
-                url: 'brand/edit/' + brand_id,
-                success: function(data) {
-                    $('#modal_body').html(data);
-                }
-            })
-        })
+        // $('body').on('click', '.edit', function() {
+        //     var product_id = $(this).data('id');
+        //     // alert(product_id);
+        //     $.ajax({
+        //         type: 'GET',
+        //         url: 'product/edit/' + product_id,
+        //         success: function(data) {
+        //             $('#modal_body').html(data);
+        //         }
+        //     })
+        // })
     </script>
 
     <script>
