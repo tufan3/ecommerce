@@ -14,45 +14,32 @@ use DB;
 class FrontendController extends Controller
 {
 
-    //__register page--------------------------//
-    // public function registerUser()
-    // {
-    //     return view('frontend.register_user');
-    // }
-    // //__register page--------------------------//
-
-    // public function create(Request $request)
-    // {
-    //     $request->validate([
-    //         'name' => 'required', 'string', 'max:255',
-    //         'email' => 'required', 'string', 'email', 'max:255', 'unique:users',
-    //         'password' => 'required', 'string', 'min:6', 'confirmed',
-    //         ]);
-    //         $user = new User();
-    //         $user->name = $request->input('name');
-    //         $user->email = $request->input('email');
-    //         $user->password = bcrypt($request->input('password'));
-    //         $user->save();
-    //         $notification = array('message' => 'Your are successfully login!', 'alert-type' => 'success');
-    //         // return redirect()->route('/')->with($notification);
-    //         return redirect('/')->with($notification);
-
-    // }
-
-
     //root page
     public function index(){
         // $category = Category::all();
         $category = DB::table('categories')->get();
-        $banner_product = Product::where('product_slider',1)->latest()->first();
+        $banner_product = Product::where('product_slider',1)->where('status',1)->latest()->first();
 
-        return view('frontend.index',compact('category','banner_product'));
+        $featured = Product::where('featured',1)->where('status',1)->orderBy('id','DESC')->get();
+
+        $popular_products = Product::where('status',1)->orderBy('product_view','DESC')->limit(16)->get();
+
+        $trendy_product = Product::where('product_trendy',1)->where('status',1)->orderBy('id','DESC')->limit(10)->get();
+
+        ///---home category
+        $home_category = Category::where('home_page',1)->orderBy('category_name','ASC')->get();
+
+        return view('frontend.index',compact('category','banner_product','featured','popular_products','trendy_product','home_category'));
     }
 
     //__single product page calling-----///
     public function productDetails($slug){
         // $product = Product::find($slug);
         $product = Product::where('product_slug',$slug)->first();
+
+        //--auto increment view---//
+        Product::where('product_slug',$slug)->increment('product_view');
+
         $related_products = DB::table('products')->where('subcategory_id',$product->subcategory_id)->orderBy('id','desc')->limit(10)->get();
 
         $average_rating = DB::table('reviews')->where('product_id',$product->id)->avg('rating');
@@ -66,7 +53,14 @@ class FrontendController extends Controller
 
         $brands = Brand::limit(10)->get();
 
-        return view('frontend.product_details',compact('product','related_products','average_rating','review_all','rating_count','brands'));
+        return view('frontend.product.product_details',compact('product','related_products','average_rating','review_all','rating_count','brands'));
     }
     //__single product page calling-----///
+
+    ///----product quick view---///
+    public function productQuickView($id){
+        $product = Product::find($id);
+        return view('frontend.product.quick_view',compact('product'));
+    }
+    ///----product quick view---///
 }

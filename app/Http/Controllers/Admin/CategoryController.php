@@ -30,6 +30,7 @@ class CategoryController extends Controller
             ]);
             $category = new Category();
             $category->category_name = $request->category_name;
+            $category->home_page = $request->home_page;
             $category->category_slug = Str::slug($request->category_name, '-');
             $category->save();
             $notification = array('message' => 'Category Added Successfully', 'alert-type' => 'success');
@@ -71,6 +72,7 @@ class CategoryController extends Controller
             ]);
             $category = Category::find($request->id);
             $category->category_name = $request->category_name;
+            $category->home_page = $request->home_page;
             $category->category_slug = Str::slug($request->category_name, '-');
             $category->save();
             $notification = array('message' => 'Category Updated Successfully', 'alert-type' => 'success');

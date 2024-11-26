@@ -131,7 +131,12 @@ textarea {
                     <div class="product_category">{{ $product->category->category_name }} > {{ $product->subcategory->subcategory_name }}</div>
                     <div class="product_name" style="font-size: 20px">{{ $product->product_name }}</div>
 
+                    @if($product->brand == null)
+                    <div class="product_brand">Brand: Not Available</div>
+                    @else
                     <div class="product_category"><b>Brand: </b>{{ $product->brand->brand_name }}</div>
+                    @endif
+
 
                     <div class="product_category"><b>Stock: </b>{{ $product->stock_quantity }}</div>
                     <div class="product_category"><b>Unit: </b>{{ $product->product_unit }}</div>
@@ -230,8 +235,13 @@ textarea {
 
                             </div>
                             <div class="button_container">
-                                <button type="button" class="button cart_button">Add to Cart</button>
-                                <div class="product_fav"><i class="fas fa-heart"></i></div>
+                                {{-- <button type="button" class="button cart_button">Add to Cart</button>
+                                <div class="product_fav"><i class="fas fa-heart"></i>dbdb</div> --}}
+
+                                <div class="btn-group" role="group" aria-label="Basic example">
+                                    <button type="button" class="btn btn-primary">Add to Cart</button>
+                                    <a href="{{ route('add.wishlist',$product->id) }}" type="submit" class="btn btn-outline-info"><i class="fas fa-heart"></i></a>
+                                </div>
                             </div>
 
                         </form>
@@ -516,14 +526,6 @@ textarea {
                         @foreach ($brands as $brand)
                         <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img style="width: 120px; height: 40px;" src="{{ asset($brand->brand_logo) }}" alt=""></div></div>
                         @endforeach
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset('public/frontend') }}/images/brands_1.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset('public/frontend') }}/images/brands_2.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset('public/frontend') }}/images/brands_3.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset('public/frontend') }}/images/brands_4.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset('public/frontend') }}/images/brands_5.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset('public/frontend') }}/images/brands_6.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset('public/frontend') }}/images/brands_7.jpg" alt=""></div></div>
-                        <div class="owl-item"><div class="brands_item d-flex flex-column justify-content-center"><img src="{{ asset('public/frontend') }}/images/brands_8.jpg" alt=""></div></div>
                     </div>
 
                     <!-- Brands Slider Navigation -->

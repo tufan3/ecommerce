@@ -124,9 +124,9 @@
                 </a>
               </li>
               <li class="nav-item">
-                <a href="#" class="nav-link">
+                <a href="{{ route('campaign.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
-                  <p>E-Camaign</p>
+                  <p>E-Campaign</p>
                 </a>
               </li>
             </ul>

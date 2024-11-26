@@ -38,6 +38,7 @@
                                             <th>SL</th>
                                             <th>Category Name</th>
                                             <th>Category Slug</th>
+                                            <th>Home Page</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -47,6 +48,13 @@
                                                 <td>{{ $key + 1 }}</td>
                                                 <td>{{ $row->category_name }}</td>
                                                 <td>{{ $row->category_slug }}</td>
+                                                <td>@if($row->home_page == 1)
+                                                        <span class="bg-success">Home Page</span>
+                                                    @else
+                                                        <span class="bg-danger">Not Home Page</span>
+                                                    @endif
+                                                </td>
+
                                                 <td>
                                                     {{-- <a href="{{ route('category.edit', $row->id) }}" class="btn btn-info btn-sm">Edit</a> --}}
                                                     <a href="#" class="btn btn-info btn-sm edit" data-id="{{ $row->id }}" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></a>
@@ -91,6 +99,14 @@
                                 <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label for="category_name" class="form-label">Show Home Page</label>
+                            <select name="home_page" class="form-control" id="">
+                                <option value="0">Not Show</option>
+                                <option value="1">Show</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -125,6 +141,14 @@
                                 <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                             @enderror
                         </div>
+
+                        <div class="form-group">
+                            <label for="category_name" class="form-label">Show Home Page</label>
+                            <select name="home_page" class="form-control" id="e_home_page">
+                                <option value="0">Not Show</option>
+                                <option value="1">Show</option>
+                            </select>
+                        </div>
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -148,6 +172,7 @@
                 url: 'category/edit/'+cat_id,
                 success: function(data){
                     $('#e_category_name').val(data.category_name);
+                    $('#e_home_page').val(data.home_page);
                     $('#e_category_id').val(data.id);
                     }
             })

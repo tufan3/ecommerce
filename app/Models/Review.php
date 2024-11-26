@@ -23,19 +23,19 @@ class Review extends Model
         return $this->belongsTo(Product::class,'product_id');
     }
 
-    public function childcategory(){
-        return $this->belongsTo(Childcategory::class,'childcategory_id');
-    }
+    // public function childcategory(){
+    //     return $this->belongsTo(Childcategory::class,'childcategory_id');
+    // }
 
-    public function brand(){
-        return $this->belongsTo(Brand::class,'brand_id');
-    }
+    // public function brand(){
+    //     return $this->belongsTo(Brand::class,'brand_id');
+    // }
 
-    public function pickup_point(){
-        return $this->belongsTo(Pickup_point::class,'pickup_point_id');
-    }
+    // public function pickup_point(){
+    //     return $this->belongsTo(Pickup_point::class,'pickup_point_id');
+    // }
 
-    public function warehouse(){
-        return $this->belongsTo(Warehouse::class,'warehouse');
-    }
+    // public function warehouse(){
+    //     return $this->belongsTo(Warehouse::class,'warehouse');
+    // }
 }

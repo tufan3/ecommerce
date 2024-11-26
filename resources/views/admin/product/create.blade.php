@@ -110,8 +110,8 @@
                                                 </div>
 
                                                 <div class="form-group">
-                                                    <label>Brand <span class="text-danger">*</span></label>
-                                                    <select name="brand_id" class="form-control" required>
+                                                    <label>Brand <span class="text-danger"></span></label>
+                                                    <select name="brand_id" class="form-control">
                                                         <option value="">----SELECT----</option>
                                                         @foreach ($brand as $row)
                                                             <option value="{{ $row->id }}">{{ $row->brand_name }}
@@ -283,6 +283,11 @@
                                         <div class="form-group">
                                             <label for="toggle-switch">Slider Product</label><br>
                                             <input type="checkbox" data-toggle="toggle" data-on="ON" data-off="OFF" data-onstyle="success" data-offstyle="danger" id="toggle-switch" name="product_slider" value="1">
+                                        </div>
+
+                                        <div class="form-group">
+                                            <label for="toggle-switch">Trendy Product</label><br>
+                                            <input type="checkbox" data-toggle="toggle" data-on="ON" data-off="OFF" data-onstyle="success" data-offstyle="danger" id="toggle-switch" name="product_trendy" value="1">
                                         </div>
 
                                         <div class="form-group">

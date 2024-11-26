@@ -138,7 +138,6 @@ class ProductController extends Controller
             'product_name' => 'required',
             'product_code' => 'required|unique:products',
             'subcategory_id' => 'required',
-            'brand_id' => 'required',
             'product_unit' => 'required',
             'selling_price' => 'required',
             'description' => 'required',
@@ -173,6 +172,7 @@ class ProductController extends Controller
         $product->product_video = $request->product_video;
         $product->status = $request->status;
         $product->product_slider = $request->product_slider;
+        $product->product_trendy = $request->product_trendy;
         $product->user_id = auth()->user()->id;
         $product->date = date('d-m-Y');
         $product->month = date('F');

@@ -282,6 +282,11 @@
                                         </div>
 
                                         <div class="form-group">
+                                            <label for="toggle-switch">Trendy Product</label><br>
+                                            <input type="checkbox" @if($product->product_trendy == 1) checked @endif data-toggle="toggle" data-on="ON" data-off="OFF" data-onstyle="success" data-offstyle="danger" id="toggle-switch" name="product_trendy" value="1">
+                                        </div>
+
+                                        <div class="form-group">
                                             <label for="toggle-switch">Status</label><br>
                                             <input type="checkbox" @if($product->status == 1) checked @endif data-toggle="toggle" data-on="ON" data-off="OFF" data-onstyle="success" data-offstyle="danger" id="toggle-switch" name="status" value="1">
                                         </div>

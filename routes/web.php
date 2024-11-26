@@ -40,8 +40,14 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
     Route::get('/','FrontendController@index');
     Route::get('/product-details/{slug}','FrontendController@productDetails')->name('product.details');
 
+    //---product quick view----///
+    Route::get('/product-quick-view/{id}','FrontendController@productQuickView');
+
 
     //__reviews route-----//
     Route::post('/store/review','ReviewController@store')->name('review.store');
+
+    //__ wishlist---------------//
+    Route::get('/add/review/{id}','ReviewController@addWishlist')->name('add.wishlist');
 
 });
