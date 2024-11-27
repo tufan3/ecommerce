@@ -28,13 +28,18 @@ class BrandController extends Controller
 
             return DataTables::of($data)
                 ->addIndexColumn()
+                ->editColumn('front_page', function ($row) {
+                    if ($row->front_page == 1) {
+                    return '<span class="badge badge-success">Home Page</span>';
+                    }
+                })
                 ->addColumn('action', function ($row) {
                     $actionbtn = '<a href="#" class="btn btn-info btn-sm edit" data-id="' . $row->id . '" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></a>
 
                 <a href="' . route('brand.delete', [$row->id]) . '" id="delete" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>';
                     return $actionbtn;
                 })
-                ->rawColumns(['action'])
+                ->rawColumns(['action','front_page'])
                 ->make(true);
         }
         //__qurild bulder with yajra data table__//
@@ -77,6 +82,7 @@ class BrandController extends Controller
 
         $brand = new Brand();
         $brand->brand_name = $request->brand_name;
+        $brand->front_page = $request->front_page;
         $brand->brand_slug = $slug;
         $photo = $request->brand_logo;
 
@@ -127,6 +133,7 @@ class BrandController extends Controller
             }
         }
         $brand->brand_name = $request->brand_name;
+        $brand->front_page = $request->front_page;
         $brand->brand_slug = $newSlug;
 
         $photo = $request->file('brand_logo');

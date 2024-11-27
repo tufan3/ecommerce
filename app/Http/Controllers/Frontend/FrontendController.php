@@ -17,7 +17,7 @@ class FrontendController extends Controller
     //root page
     public function index(){
         // $category = Category::all();
-        $category = DB::table('categories')->get();
+        $category = DB::table('categories')->orderBy('category_name')->get();
         $banner_product = Product::where('product_slider',1)->where('status',1)->latest()->first();
 
         $featured = Product::where('featured',1)->where('status',1)->orderBy('id','DESC')->get();
@@ -29,7 +29,13 @@ class FrontendController extends Controller
         ///---home category
         $home_category = Category::where('home_page',1)->orderBy('category_name','ASC')->get();
 
-        return view('frontend.index',compact('category','banner_product','featured','popular_products','trendy_product','home_category'));
+        //---brand---//
+        $brand = Brand::where('front_page',1)->limit(24)->get();
+
+        //-- recent view---//
+        $recent_view = Product::where('status',1)->inRandomOrder()->limit(16)->get();
+
+        return view('frontend.index',compact('category','banner_product','featured','popular_products','trendy_product','home_category','brand','recent_view'));
     }
 
     //__single product page calling-----///

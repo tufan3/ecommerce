@@ -18,6 +18,14 @@
         </div>
 
         <div class="form-group">
+            <label for="front_page" class="form-label">Show Home Page</label>
+            <select name="front_page" class="form-control" id="">
+                <option value="1" @if($brand->front_page == 1) selected @endif>Yes</option>
+                <option value="0" @if($brand->front_page == 0) selected @endif>No</option>
+            </select>
+        </div>
+
+        <div class="form-group">
             <label for="brand_name" class="form-label">Brand Logo</label>
             <input type="file" class="dropify" name="brand_logo" data-height="140" data-width="140" value=""/>
             <input type="hidden" name="old_image" id="" value="{{ $brand->brand_logo }}">

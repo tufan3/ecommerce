@@ -23,11 +23,11 @@
                                 @php
                                     $subcategory = DB::table('subcategories')->where('category_id', $row->id)->get();
                                 @endphp
-                                <li class="hassubs">
+                                <li class="hassubs" style="margin-left: -10%">
                                     @if($subcategory->isEmpty())
-                                        <a href="#">{{ $row->category_name }}</a>
+                                        <a href="#"><img src="{{ asset($row->icon) }}" width="18" height="18" alt="">{{ $row->category_name }}</a>
                                     @else
-                                        <a href="#">{{ $row->category_name }}<i class="fas fa-chevron-right"></i></a>
+                                        <a href="#"><img src="{{ asset($row->icon) }}" width="18" height="18" alt="">{{ $row->category_name }}<i class="fas fa-chevron-right"></i></a>
                                     @endif
                                     @if(!$subcategory->isEmpty())
                                     <ul>
@@ -61,7 +61,7 @@
 
                     <div class="main_nav_menu ml-auto">
                         <ul class="standard_dropdown main_nav_dropdown">
-                            <li><a href="index-2.html">Home<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="{{ url('/') }}">Home<i class="fas fa-chevron-down"></i></a></li>
                             <li class="hassubs">
                                 <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
                                 <ul>

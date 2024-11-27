@@ -39,6 +39,7 @@
                                             <th>Category Name</th>
                                             <th>Category Slug</th>
                                             <th>Home Page</th>
+                                            <th>Icon</th>
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -49,10 +50,13 @@
                                                 <td>{{ $row->category_name }}</td>
                                                 <td>{{ $row->category_slug }}</td>
                                                 <td>@if($row->home_page == 1)
-                                                        <span class="bg-success">Home Page</span>
+                                                        <span class="badge badge-success">Home Page</span>
                                                     @else
-                                                        <span class="bg-danger">Not Home Page</span>
+                                                        <span class="badge badge-danger">Not Home Page</span>
                                                     @endif
+                                                </td>
+                                                <td>
+                                                    <img src="{{ asset($row->icon) }}" alt="{{ $row->category_name }}">
                                                 </td>
 
                                                 <td>
@@ -88,7 +92,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('category.store') }}" method="POST">
+                <form action="{{ route('category.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="modal-body">
                         <div class="form-group">
@@ -103,9 +107,14 @@
                         <div class="form-group">
                             <label for="category_name" class="form-label">Show Home Page</label>
                             <select name="home_page" class="form-control" id="">
-                                <option value="0">Not Show</option>
-                                <option value="1">Show</option>
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
                             </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="icon" class="form-label">Category Icon</label>
+                            {{-- <input type="file" class="form-control" name="brand_logo" id=""> --}}
+                            <input type="file" class="dropify" name="icon" data-height="140" data-width="140" required/>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -129,32 +138,7 @@
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
-                <form action="{{ route('category.update') }}" method="POST">
-                    @csrf
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="category_name" class="form-label">Catrgory Name</label>
-                            <input type="text" class="form-control @error('category_name') is-invalid @enderror" id="e_category_name" name="category_name" placeholder="Category Name" value="">
-                            <input type="hidden" id="e_category_id" name="id" required>
-
-                            @error('category_name')
-                                <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
-                            @enderror
-                        </div>
-
-                        <div class="form-group">
-                            <label for="category_name" class="form-label">Show Home Page</label>
-                            <select name="home_page" class="form-control" id="e_home_page">
-                                <option value="0">Not Show</option>
-                                <option value="1">Show</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" class="btn btn-primary">Submit</button>
-                    </div>
-                </form>
+                <div id="modal_body"></div>
             </div>
         </div>
     </div>
@@ -171,9 +155,10 @@
                 type: 'GET',
                 url: 'category/edit/'+cat_id,
                 success: function(data){
-                    $('#e_category_name').val(data.category_name);
-                    $('#e_home_page').val(data.home_page);
-                    $('#e_category_id').val(data.id);
+                    $('#modal_body').html(data);
+                    // $('#e_category_name').val(data.category_name);
+                    // $('#e_home_page').val(data.home_page);
+                    // $('#e_category_id').val(data.id);
                     }
             })
         })

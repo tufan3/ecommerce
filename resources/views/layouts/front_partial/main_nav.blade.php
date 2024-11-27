@@ -20,11 +20,15 @@
                                 @php
                                     $subcategory = DB::table('subcategories')->where('category_id', $row->id)->get();
                                 @endphp
-                                <li class="hassubs">
+                                <li class="hassubs" style="margin-left: -10%">
                                     @if($subcategory->isEmpty())
-                                        <a href="#">{{ $row->category_name }}</a>
+                                        <a href="#">
+                                         <img src="{{ asset($row->icon) }}" width="18" height="18" alt="">   {{ $row->category_name }}
+                                        </a>
                                     @else
-                                        <a href="#">{{ $row->category_name }}<i class="fas fa-chevron-right"></i></a>
+                                        <a href="#">
+                                            <img src="{{ asset($row->icon) }}" width="20" height="20" alt="">{{ $row->category_name }}
+                                            <i class="fas fa-chevron-right"></i></a>
                                     @endif
                                     @if(!$subcategory->isEmpty())
                                     <ul>

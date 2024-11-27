@@ -41,6 +41,7 @@
                                             <th>SL</th>
                                             <th>Brand Name</th>
                                             <th>Brand Slug</th>
+                                            <th>Home Page</th>
                                             <th>Brand Logo</th>
                                             <th>Action</th>
                                         </tr>
@@ -85,6 +86,14 @@
                             @error('brand_name')
                                 <span class="invalid-feedback"><strong>{{ $message }}</strong></span>
                             @enderror
+                        </div>
+
+                        <div class="form-group">
+                            <label for="front_page" class="form-label">Show Home Page</label>
+                            <select name="front_page" class="form-control" id="">
+                                <option value="1">Yes</option>
+                                <option value="0">No</option>
+                            </select>
                         </div>
 
                         <div class="form-group">
@@ -138,6 +147,7 @@
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
                     {data: 'brand_name', name: 'brand_name'},
                     {data: 'brand_slug', name: 'brand_slug'},
+                    {data: 'front_page', name: 'front_page'},
                     {data: 'brand_logo', name: 'brand_logo', render: function(data, type, full, meta){
                         return "<img src=\"" + data + "\" width=\"100\" height=\"100\"/>";
                     }},

@@ -7,6 +7,7 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Str;
 use DB;
+use Intervention\Image\Facades\Image;
 
 class CategoryController extends Controller
 {
@@ -28,10 +29,24 @@ class CategoryController extends Controller
         $request->validate([
             'category_name' => 'required|unique:categories|max:100',
             ]);
+
+            $slug = Str::slug($request->category_name, '-');
+
             $category = new Category();
             $category->category_name = $request->category_name;
             $category->home_page = $request->home_page;
             $category->category_slug = Str::slug($request->category_name, '-');
+
+            $photo = $request->icon;
+
+            if ($photo) {
+                $photoname = $slug . '.' . $photo->getClientOriginalExtension();
+                Image::make($photo)->resize(32, 32)->save('public/files/icon/' . $photoname);
+                $category->icon = 'public/files/icon/' . $photoname;
+
+                $category->save();
+            }
+
             $category->save();
             $notification = array('message' => 'Category Added Successfully', 'alert-type' => 'success');
             return redirect()->back()->with($notification);
@@ -42,7 +57,8 @@ class CategoryController extends Controller
     public function edit($id)
     {
         $category = Category::find($id);
-        return response()->json($category);
+        return view('admin.category.category.edit', compact('category'));
+        // return response()->json($category);
     }
     //__category edit form__//
 
@@ -68,12 +84,39 @@ class CategoryController extends Controller
 
 
             $request->validate([
-            'category_name' => 'required|max:100',
+                'category_name' => 'required|unique:categories,category_name,'.$request->id,
             ]);
+
             $category = Category::find($request->id);
+
+            $newSlug = Str::slug($request->category_name, '-');
+
+            if ($category->category_name != $request->category_name) {
+                if ($category->icon && file_exists($category->icon)) {
+                    $oldImagePath = $category->icon;
+                    $newImagePath = ('public/files/icon/' . $newSlug . '.' . pathinfo($oldImagePath, PATHINFO_EXTENSION));
+
+                    rename($oldImagePath, $newImagePath);
+
+                    $category->icon = 'public/files/icon/' . $newSlug . '.' . pathinfo($oldImagePath, PATHINFO_EXTENSION);
+                }
+            }
+
             $category->category_name = $request->category_name;
             $category->home_page = $request->home_page;
             $category->category_slug = Str::slug($request->category_name, '-');
+
+            $photo = $request->file('icon');
+            if ($photo) {
+                    if ($category->icon && file_exists($category->icon)) {
+                        unlink($category->icon);
+                    }
+                    $photoname = $newSlug . '.' . $photo->getClientOriginalExtension();
+                    Image::make($photo)->resize(32, 32)->save('public/files/icon/' . $photoname);
+                    $category->icon = 'public/files/icon/' . $photoname;
+            }
+
+
             $category->save();
             $notification = array('message' => 'Category Updated Successfully', 'alert-type' => 'success');
             return redirect()->back()->with($notification);
@@ -84,6 +127,10 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         $category = Category::find($id);
+        $image = $category->icon;
+        if ($image && file_exists($image)) {
+            unlink($image);
+        }
         $category->delete();
         $notification = array('message' => 'Category Deleted Successfully', 'alert-type' => '
         success');
