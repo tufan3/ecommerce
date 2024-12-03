@@ -2,6 +2,9 @@
 
 @section('content')
 
+@include('layouts.front_partial.collaps_nav')
+<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend') }}/styles/product_styles.css">
+
 <style>
     .profile-card {
         text-align: center;
@@ -22,7 +25,7 @@
     }
 </style>
 
-    <div class="container">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 @include('user.sidebar')
@@ -35,7 +38,7 @@
                     <div class="card-body">
                         <h4>Write your valuable review based on our product and services</h4>
                         <div>
-                            <form action="" method="POST">
+                            <form action="{{ route('store.website.review') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <label for="product_id">Customer Name</label>

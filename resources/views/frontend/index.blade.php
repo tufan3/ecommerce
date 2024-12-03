@@ -5,6 +5,7 @@
     <!-- Menu -->
 @endsection
 @section('content')
+
     <!-- Banner -->
     <div class="banner">
         <div class="banner_background"
@@ -634,132 +635,118 @@
 
                         <!-- Reviews Slider -->
                         <div class="owl-carousel owl-theme reviews_slider">
-
+                            @foreach ($website_review as $row)
                             <!-- Reviews Slider Item -->
                             <div class="owl-item">
                                 <div class="review d-flex flex-row align-items-start justify-content-start">
                                     <div>
-                                        <div class="review_image"><img src="images/review_1.jpg" alt=""></div>
+                                        <div class="review_image"><img src="{{ asset('public/files/dummy.png') }}" alt=""></div>
                                     </div>
                                     <div class="review_content">
-                                        <div class="review_name">Roberto Sanchez</div>
+                                        <div class="review_name">{{ $row->name }}</div>
                                         <div class="review_rating_container">
                                             <div class="rating_r rating_r_4 review_rating">
-                                                <i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
+                                                @if($row->rating == 5)
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                </span>
+                                                @elseif($row->rating == 4)
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                </span>
+                                                @elseif($row->rating == 3)
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                </span>
+                                                @elseif($row->rating == 2)
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                </span>
+                                                @else
+                                                <span>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="gold">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                    <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="black">
+                                                        <path d="M12 .587l3.668 7.568L24 9.753l-6 5.847 1.417 8.457L12 18.897l-7.417 5.16L6 15.6 0 9.753l8.332-1.598z"/>
+                                                    </svg>
+                                                </span>
+                                                @endif
+                                            </div>
+                                            <div class="review_time">{{ $row->review_date }}</div>
                                         </div>
                                         <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
-                                                laoreet.</p>
+                                            <p style="text-align: justify">{{ substr($row->review,0,100) }}</p>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div>
-                                        <div class="review_image"><img src="images/review_2.jpg" alt=""></div>
-                                    </div>
-                                    <div class="review_content">
-                                        <div class="review_name">Brandon Flowers</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating">
-                                                <i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
-                                                laoreet.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div>
-                                        <div class="review_image"><img src="images/review_3.jpg" alt=""></div>
-                                    </div>
-                                    <div class="review_content">
-                                        <div class="review_name">Emilia Clarke</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating">
-                                                <i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
-                                                laoreet.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div>
-                                        <div class="review_image"><img src="images/review_1.jpg" alt=""></div>
-                                    </div>
-                                    <div class="review_content">
-                                        <div class="review_name">Roberto Sanchez</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating">
-                                                <i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
-                                                laoreet.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div>
-                                        <div class="review_image"><img src="images/review_2.jpg" alt=""></div>
-                                    </div>
-                                    <div class="review_content">
-                                        <div class="review_name">Brandon Flowers</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating">
-                                                <i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
-                                                laoreet.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Reviews Slider Item -->
-                            <div class="owl-item">
-                                <div class="review d-flex flex-row align-items-start justify-content-start">
-                                    <div>
-                                        <div class="review_image"><img src="images/review_3.jpg" alt=""></div>
-                                    </div>
-                                    <div class="review_content">
-                                        <div class="review_name">Emilia Clarke</div>
-                                        <div class="review_rating_container">
-                                            <div class="rating_r rating_r_4 review_rating">
-                                                <i></i><i></i><i></i><i></i><i></i></div>
-                                            <div class="review_time">2 day ago</div>
-                                        </div>
-                                        <div class="review_text">
-                                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas fermentum
-                                                laoreet.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
 
                         </div>
                         <div class="reviews_dots"></div>
@@ -942,10 +929,10 @@
                             </div>
                         </div>
                         <div class="newsletter_content clearfix">
-                            <form action="#" class="newsletter_form">
-                                <input type="email" class="newsletter_input" required="required"
-                                    placeholder="Enter your email address">
-                                <button class="newsletter_button">Subscribe</button>
+                            <form action="{{ route('store.newsletter') }}" method="POST" class="newsletter_form" id="newsletter_form">
+                                @csrf
+                                <input type="email" name="email" class="newsletter_input" required="required" placeholder="Enter your email address">
+                                <button type="submit" class="newsletter_button">Subscribe</button>
                             </form>
                             <div class="newsletter_unsubscribe_link"><a href="#">unsubscribe</a></div>
                         </div>
@@ -977,6 +964,33 @@
 
     <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+    $('#newsletter_form').submit(function(e) {
+        e.preventDefault();
+        var url = $(this).attr('action');
+        var request = $(this).serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: request,
+            success: function(data) {
+                toastr.success(data.message);
+                $('#newsletter_form')[0].reset();
+            },
+            error: function(xhr) {
+                if (xhr.status === 422) {
+                    var errors = xhr.responseJSON.errors;
+                    $.each(errors, function(key, value) {
+                        toastr.error(value[0]);
+                    });
+                }
+            }
+        });
+    });
+</script>
+
 
 {{-- <script>
         $(document).on('click', '.quick_view', function() {

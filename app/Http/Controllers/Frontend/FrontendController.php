@@ -9,7 +9,10 @@ use App\Models\Childcategory;
 use App\Models\Product;
 use App\Models\Review;
 use App\Models\Subcategory;
+use App\Models\Page;
+use App\Models\Newsletter;
 use App\Models\User;
+use App\Models\Websitereview;
 use Illuminate\Http\Request;
 use DB;
 
@@ -40,8 +43,11 @@ class FrontendController extends Controller
         //--today deal--//
         $today_deal = Product::where('today_deal',1)->where('status',1)->orderBy('id','desc')->limit(6)->get();
 
+        //--website revire--//
+        $website_review = Websitereview::where('status',1)->orderBy('review_date','DESC')->limit(12)->get();
 
-        return view('frontend.index',compact('category','banner_product','featured','popular_products','trendy_product','home_category','brand','recent_view','today_deal'));
+
+        return view('frontend.index',compact('category','banner_product','featured','popular_products','trendy_product','home_category','brand','recent_view','today_deal','website_review'));
     }
 
     //__single product page calling-----///
@@ -140,5 +146,24 @@ class FrontendController extends Controller
     }
     //---brand wise product page calling-----///
 
+    //---footer page view-----///
+    public function viewPage($slug){
+        $page = Page::where('page_slug',$slug)->first();
+        return view('frontend.page',compact('page'));
+    }
+    //---footer page view-----///
+
+    //--news letter ---//
+    public function storeNewsLetter(Request $request){
+        $request->validate([
+            'email' =>'required|email|unique:newsletters',
+        ]);
+        $newsletter = new Newsletter();
+        $newsletter->email = $request->email;
+        $newsletter->save();
+
+        return response()->json(['message' => 'Subscribed successfully!'], 200);
+    }
+    //--news letter ---//
 
 }

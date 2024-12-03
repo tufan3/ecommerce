@@ -77,15 +77,24 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
 
      //--brand wise product--//
      Route::get('/brandwise/product/{slug}','FrontendController@brandWiseProduct')->name('brandwise.product');
+    //  view page---//
+     Route::get('/page/{slug}','FrontendController@viewPage')->name('view.page');
 
+     //setting profile--//
+     Route::get('/home/setting','ProfileController@customerSetting')->name('customer.setting');
+     Route::POST('/home/password/update','ProfileController@customerPasswordChange')->name('customer.password.change');
 
-      //__reviews for product -----//
+    //__reviews for product -----//
     Route::post('/store/review','ReviewController@store')->name('review.store');
     ///-- this review for website---///
     Route::get('/write/review','ReviewController@write')->name('write.review');
+    Route::POST('/store/website/review','ReviewController@storeWebsiteReview')->name('store.website.review');
+
+    //news letter--//
+    Route::post('/store/newsletter','FrontendController@storeNewsLetter')->name('store.newsletter');
 });
 
- 
+
 
 
 Route::get('/shop/product', function () {

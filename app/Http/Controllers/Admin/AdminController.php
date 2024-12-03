@@ -42,7 +42,7 @@ class AdminController extends Controller
         $request->validate([
             'old_password' => 'required',
             'password' => 'required|min:6|confirmed',
-            ]);
+        ]);
             $user = User::findOrFail(Auth::id());
             $old_password = $request->old_password;
             $new_password = $request->password;
@@ -52,11 +52,11 @@ class AdminController extends Controller
                 Auth::logout();
                 $notification = array('message' => 'Password updated successfully', 'alert-type' => 'success');
                 return redirect()->route('admin.login')->with($notification);
-                } else {
+            } else {
                     $notification = array('message' => 'Old password not match', 'alert-type' => 'error');
                     return redirect()->back()->with($notification);
-                    }
-                }
+            }
+    }
 
     //__update password__//
 

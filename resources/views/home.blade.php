@@ -2,6 +2,8 @@
 
 @section('content')
 
+@include('layouts.front_partial.collaps_nav')
+<link rel="stylesheet" type="text/css" href="{{ asset('public/frontend') }}/styles/product_styles.css">
 <style>
     .profile-card {
         text-align: center;
@@ -22,7 +24,7 @@
     }
 </style>
 
-    <div class="container">
+    <div class="container mt-5">
         <div class="row justify-content-center">
             <div class="col-md-4">
                 @include('user.sidebar')
