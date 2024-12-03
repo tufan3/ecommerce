@@ -153,7 +153,7 @@
 							<div class="wishlist d-flex flex-row align-items-center justify-content-end">
 								<div class="wishlist_icon"><img src="{{ asset('public/frontend') }}/images/heart.png" alt=""></div>
 								<div class="wishlist_content">
-									<div class="wishlist_text"><a href="#">Wishlist</a></div>
+									<div class="wishlist_text"><a href="{{ route('wishlist') }}">Wishlist</a></div>
 									<div class="wishlist_count">{{ $wishlist }}</div>
 								</div>
 							</div>
@@ -163,11 +163,11 @@
 								<div class="cart_container d-flex flex-row align-items-center justify-content-end">
 									<div class="cart_icon">
 										<img src="{{ asset('public/frontend') }}/images/cart.png" alt="">
-										<div class="cart_count"><span>10</span></div>
+										<div class="cart_count"><span class="cart_qty"></span></div>
 									</div>
 									<div class="cart_content">
-										<div class="cart_text"><a href="#">Cart</a></div>
-										<div class="cart_price">$85</div>
+										<div class="cart_text"><a href="{{ route('cart.page') }}">Cart</a></div>
+										<div class="cart_price">{{ $setting->currency }}<span class="cart_total"></span></div>
 									</div>
 								</div>
 							</div>
@@ -219,6 +219,26 @@
   gtag('config', 'UA-23581568-13');
 </script>
 
+<script>
+    function cart() {
+        $.ajax({
+            method: 'get',
+            url: '{{ route('all.cart') }}',
+            dataType: 'json',
+            success: function(data) {
+                // alert(data);
+                $('.cart_qty').empty();
+                $('.cart_total').empty();
+                $('.cart_qty').append(data.cart_qty);
+                $('.cart_total').append(data.cart_total);
+        }
+        });
+    }
+    $(document).ready(function(event) {
+        cart();
+    });
+</script>
+
 {{-- toastr message --}}
 <script>
     @if (Session::has('message'))
@@ -259,6 +279,7 @@
     @endif
 </script>
 {{-- toastr message --}}
+
 
 </body>
 

@@ -43,11 +43,51 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
     //---product quick view----///
     Route::get('/product-quick-view/{id}','FrontendController@productQuickView');
 
+    //--cart--//
+    Route::post('/add-to-cart','CartController@addToCartQuickView')->name('add.to.cart.quickView');
 
-    //__reviews route-----//
-    Route::post('/store/review','ReviewController@store')->name('review.store');
+    Route::get('/all-cart','CartController@allCart')->name('all.cart');
+
+    //---cart --//
+    Route::get('/my-cart','CartController@myCart')->name('cart.page');
+    Route::get('/cart/destroy','CartController@cartDestroy')->name('cart.destroy');
+
+    //cart product remove--//
+    // Route::get('/cart-product/romove/{rowId}','CartController@cartProductRemove')->name('cartproduct.remove');
+    Route::get('/cartproduct/remove/{rowId}','CartController@cartProductRemove');
+    //--cart update quantity--//
+    Route::get('/cartproduct/update/{rowId}/{qty}','CartController@cartUpdateQty');
+    //--cart update color--//
+    Route::get('/cartproduct/update-color/{rowId}/{color}','CartController@cartUpdateColor');
+    //--cart update size--//
+    Route::get('/cartproduct/update-size/{rowId}/{size}','CartController@cartUpdateSize');
+
 
     //__ wishlist---------------//
-    Route::get('/add/review/{id}','ReviewController@addWishlist')->name('add.wishlist');
+    Route::get('/wishlist','CartController@wishlist')->name('wishlist');
+    Route::get('/add/wishlist/{id}','CartController@addWishlist')->name('add.wishlist');
+    Route::get('/clear/wishlist','CartController@clearWishlist')->name('clear.wishlist');
+    Route::get('/wishlist-product/delete/{id}','CartController@wishlistProductDelete')->name('wishlistproduct.delete');
 
+
+     //----category wise product show route----///
+     Route::get('/category/product/{slug}','FrontendController@categoryWiseProduct')->name('categorywise.product');
+     Route::get('/subcategory/product/{slug}','FrontendController@subcategoryWiseProduct')->name('subcategorywise.product');
+     Route::get('/childcategory/product/{slug}','FrontendController@childcategoryWiseProduct')->name('childcategorywise.product');
+
+     //--brand wise product--//
+     Route::get('/brandwise/product/{slug}','FrontendController@brandWiseProduct')->name('brandwise.product');
+
+
+      //__reviews for product -----//
+    Route::post('/store/review','ReviewController@store')->name('review.store');
+    ///-- this review for website---///
+    Route::get('/write/review','ReviewController@write')->name('write.review');
+});
+
+ 
+
+
+Route::get('/shop/product', function () {
+    return view('frontend.product.category_products');
 });

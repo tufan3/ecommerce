@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Review;
 use Illuminate\Http\Request;
 use DB;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
@@ -14,7 +15,7 @@ class ReviewController extends Controller
         $this->middleware('auth');
     }
 
-    //__reviews store--//
+    //__reviews for product--//
     public function store(Request $request)
     {
         $request->validate([
@@ -38,25 +39,14 @@ class ReviewController extends Controller
         $notification = array('message' => 'Thank for your review', 'alert-type' => 'success');
         return redirect()->back()->with($notification);
     }
-    //__reviews store--//
+    //__reviews product--//
 
-    //___wishlist add---------//
-    public function addWishlist($id)
-    {
-        $check = DB::table('wishlists')->where('user_id',auth()->user()->
-        id)->where('product_id',$id)->first();
-        if($check){
-            $notification = array('message' => 'Already you have a wishlist with this product', 'alert-type' => 'error');
-            return redirect()->back()->with($notification);
-        }
 
-        $wishlist = array();
-        $wishlist['user_id'] = auth()->user()->id;
-        $wishlist['product_id'] = $id;
-        DB::table('wishlists')->insert($wishlist);
-
-        $notification = array('message' => 'product added on wishlist', 'alert-type' => 'success');
-        return redirect()->back()->with($notification);
+    //__reviews for website--//
+    public function write() {
+        // $reviews = Review::where('user_id', auth()->user()->id)->get();
+        return view('user.review_write');
     }
-    //___wishlist add---------//
+    //__reviews for website--//
+
 }

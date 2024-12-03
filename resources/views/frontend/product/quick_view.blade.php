@@ -50,8 +50,15 @@
                     </div>
                 </div>
 
-                <form action="">
+                <form action="{{ route('add.to.cart.quickView') }}" method="POST" id="add_cart_form">
+                    @csrf
                 <div class="form-group">
+                    <input type="hidden" name="product_id" value="{{ $product->id }}">
+                    @if($product->discount_price == null)
+                    <input type="hidden" name="product_price" value="{{ $product->selling_price }}">
+                    @else
+                    <input type="hidden" name="product_price" value="{{ $product->discount_price }}">
+                    @endif
                     <div class="row">
                         @isset($product->size)
                         <div class="col-lg-6">
@@ -89,6 +96,12 @@
                         </div>
                         @endisset
                     </div>
+                    <div class="row mt-2">
+                        <div class="col-lg-6">
+                            <span style="text-info"><b>Quantity</b> </span><br>
+                            <input type="number" min="1" max="100" name="qty" class="form-control" value="1" >
+                        </div>
+                    </div>
                     <div class="mt-3">
                         @if($product->stock_quantity < 1)
                         <button type="submit" class="btn btn-danger" disabled>Out of Stock</button>
@@ -103,3 +116,25 @@
         </div>
     </div>
 </div>
+
+
+
+
+<script>
+    $('#add_cart_form').submit(function(e) {
+        e.preventDefault();
+        var url = $(this).attr('action');
+        var request = $(this).serialize();
+        // alert(url)
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: request,
+            success: function(data) {
+                toastr.success(data);
+                $('#add_cart_form')[0].reset();
+                cart();
+            }
+        });
+    });
+</script>

@@ -54,7 +54,7 @@
 
                 @foreach ($brand as $row)
                 <div class="col-lg-1 col-md-6 char_col" style="border: 1px solid grey; padding:5px">
-                    <div class="brands_item"><a href="#" title="{{ $row->brand_name }}"><img style="width: 100%; height: 100%;" src="{{ asset($row->brand_logo) }}" alt="{{ $row->brand_name }}"></a></div>
+                    <div class="brands_item"><a href="{{ route('brandwise.product',$row->brand_slug) }}" title="{{ $row->brand_name }}"><img style="width: 100%; height: 100%;" src="{{ asset($row->brand_logo) }}" alt="{{ $row->brand_name }}"></a></div>
                 </div>
                 @endforeach
 
@@ -92,22 +92,34 @@
                             <!-- Deals Slider -->
                             <div class="owl-carousel owl-theme deals_slider">
 
+                                @foreach ($today_deal as $row)
                                 <!-- Deals Item -->
                                 <div class="owl-item deals_item">
-                                    <div class="deals_image"><img src="{{ asset('public/frontend') }}/images/deals.png"
-                                            alt=""></div>
+                                    <div class="deals_image"><img src="{{ asset('public/files/product/' . $row->product_thumbnail) }}" alt="{{ $row->product_name }}" style="width: 80%; height: 100%;"></div>
                                     <div class="deals_content">
                                         <div class="deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="deals_item_category"><a href="#">Headphones</a></div>
-                                            <div class="deals_item_price_a ml-auto">$300</div>
+                                            <div class="deals_item_category"><a href="#">{{ $row->category->category_name }}</a></div>
+                                            {{-- <div class="deals_item_price_a ml-auto">$300</div> --}}
+
+                                            @if($row->discount_price != null)
+                                                    <div class="deals_item_price_a ml-auto"><del>{{ $setting->currency }} {{ $row->selling_price }}</del></div>
+                                                @endif
+
                                         </div>
                                         <div class="deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="deals_item_name">Beoplay H7</div>
-                                            <div class="deals_item_price ml-auto">$225</div>
+                                            <div class="deals_item_name"><a href="{{ route('product.details', $row->product_slug) }}">{{ substr($row->product_name, 0, 15) }}</a></div>
+                                            {{-- <div class="deals_item_price ml-auto">$225</div> --}}
+
+                                            @if($row->discount_price == null)
+                                                    <div class="deals_item_price ml-auto" style="font-size: 14px">{{ $setting->currency }}{{ $row->selling_price }}</div>
+                                                @else
+                                                    <div class="deals_item_price ml-auto" style="font-size: 18px">{{ $setting->currency }}{{ $row->discount_price }}</div>
+                                                @endif
+
                                         </div>
                                         <div class="available">
                                             <div class="available_line d-flex flex-row justify-content-start">
-                                                <div class="available_title">Available: <span>6</span></div>
+                                                <div class="available_title">Available: <span>{{ $row->stock_quantity }}</span></div>
                                                 <div class="sold_title ml-auto">Already sold: <span>28</span></div>
                                             </div>
                                             <div class="available_bar"><span style="width:17%"></span></div>
@@ -136,96 +148,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                <!-- Deals Item -->
-                                <div class="owl-item deals_item">
-                                    <div class="deals_image"><img src="{{ asset('public/frontend') }}/images/deals.png"
-                                            alt=""></div>
-                                    <div class="deals_content">
-                                        <div class="deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="deals_item_category"><a href="#">Headphones</a></div>
-                                            <div class="deals_item_price_a ml-auto">$300</div>
-                                        </div>
-                                        <div class="deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="deals_item_name">Beoplay H7</div>
-                                            <div class="deals_item_price ml-auto">$225</div>
-                                        </div>
-                                        <div class="available">
-                                            <div class="available_line d-flex flex-row justify-content-start">
-                                                <div class="available_title">Available: <span>6</span></div>
-                                                <div class="sold_title ml-auto">Already sold: <span>28</span></div>
-                                            </div>
-                                            <div class="available_bar"><span style="width:17%"></span></div>
-                                        </div>
-                                        <div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-                                            <div class="deals_timer_title_container">
-                                                <div class="deals_timer_title">Hurry Up</div>
-                                                <div class="deals_timer_subtitle">Offer ends in:</div>
-                                            </div>
-                                            <div class="deals_timer_content ml-auto">
-                                                <div class="deals_timer_box clearfix" data-target-time="">
-                                                    <div class="deals_timer_unit">
-                                                        <div id="deals_timer2_hr" class="deals_timer_hr"></div>
-                                                        <span>hours</span>
-                                                    </div>
-                                                    <div class="deals_timer_unit">
-                                                        <div id="deals_timer2_min" class="deals_timer_min"></div>
-                                                        <span>mins</span>
-                                                    </div>
-                                                    <div class="deals_timer_unit">
-                                                        <div id="deals_timer2_sec" class="deals_timer_sec"></div>
-                                                        <span>secs</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Deals Item -->
-                                <div class="owl-item deals_item">
-                                    <div class="deals_image"><img src="{{ asset('public/frontend') }}/images/deals.png"
-                                            alt=""></div>
-                                    <div class="deals_content">
-                                        <div class="deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="deals_item_category"><a href="#">Headphones</a></div>
-                                            <div class="deals_item_price_a ml-auto">$300</div>
-                                        </div>
-                                        <div class="deals_info_line d-flex flex-row justify-content-start">
-                                            <div class="deals_item_name">Beoplay H7</div>
-                                            <div class="deals_item_price ml-auto">$225</div>
-                                        </div>
-                                        <div class="available">
-                                            <div class="available_line d-flex flex-row justify-content-start">
-                                                <div class="available_title">Available: <span>6</span></div>
-                                                <div class="sold_title ml-auto">Already sold: <span>28</span></div>
-                                            </div>
-                                            <div class="available_bar"><span style="width:17%"></span></div>
-                                        </div>
-                                        <div class="deals_timer d-flex flex-row align-items-center justify-content-start">
-                                            <div class="deals_timer_title_container">
-                                                <div class="deals_timer_title">Hurry Up</div>
-                                                <div class="deals_timer_subtitle">Offer ends in:</div>
-                                            </div>
-                                            <div class="deals_timer_content ml-auto">
-                                                <div class="deals_timer_box clearfix" data-target-time="">
-                                                    <div class="deals_timer_unit">
-                                                        <div id="deals_timer3_hr" class="deals_timer_hr"></div>
-                                                        <span>hours</span>
-                                                    </div>
-                                                    <div class="deals_timer_unit">
-                                                        <div id="deals_timer3_min" class="deals_timer_min"></div>
-                                                        <span>mins</span>
-                                                    </div>
-                                                    <div class="deals_timer_unit">
-                                                        <div id="deals_timer3_sec" class="deals_timer_sec"></div>
-                                                        <span>secs</span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
+                                @endforeach
 
                             </div>
 
@@ -282,9 +205,9 @@
                                                     <div><a href="{{ route('product.details', $feature->product_slug) }}">{{ substr($feature->product_name, 0, 20) }}</a></div>
                                                 </div>
                                                 <div class="product_extras mt-2">
-                                                    <a href="#" id="{{ $feature->id }}" class="quick_view" data-toggle="modal" data-target="#quickModal"> Quick View </a>
+                                                    {{-- <a href="#" id="{{ $feature->id }}" class="quick_view" data-toggle="modal" data-target="#quickModal"> Quick View </a> --}}
 
-                                                    <button class="product_cart_button btn-sm">Add to Cart</button>
+                                                    <button id="{{ $feature->id }}"  class="product_cart_button btn-sm quick_view" data-toggle="modal" data-target="#quickModal">Add to Cart</button>
                                                 </div>
                                             </div>
                                             <a href="{{ route('add.wishlist',$feature->id) }}">
@@ -341,11 +264,11 @@
                                                     <div><a href="{{ route('product.details', $row->product_slug) }}">{{ substr($row->product_name, 0, 20) }}</a></div>
                                                 </div>
                                                 <div class="product_extras mt-2">
-                                                    {{-- <a type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-target="#quickModal"> Quick View </a> --}}
 
-                                                    <a href="#" id="{{ $row->id }}" class="quick_view" data-toggle="modal" data-target="#quickModal"> Quick View </a>
+                                                    {{-- <a href="#" id="{{ $row->id }}" class="quick_view" data-toggle="modal" data-target="#quickModal"> Quick View </a> --}}
 
-                                                    <button class="product_cart_button btn-sm">Add to Cart</button>
+                                                    {{-- <button class="product_cart_button btn-sm">Add to Cart</button> --}}
+                                                    <button id="{{ $row->id }}"  class="product_cart_button btn-sm quick_view" data-toggle="modal" data-target="#quickModal">Add to Cart</button>
                                                 </div>
                                             </div>
                                             <a href="{{ route('add.wishlist',$row->id) }}">
@@ -452,7 +375,7 @@
                                     class="popular_category d-flex flex-column align-items-center justify-content-center">
                                     <div class="popular_category_image"><img src="{{ asset($row->icon) }}"alt=""></div>
                                     <div class="popular_category_text">
-                                        <a href="">{{ $row->category_name }}</a>
+                                        <a href="{{ route('categorywise.product', $row->category_slug) }}">{{ $row->category_name }}</a>
                                     </div>
                                 </div>
                             </div>
@@ -481,7 +404,7 @@
                         <div class="tabs clearfix tabs-right">
                             <div class="new_arrivals_title">{{ $row->category_name }}</div>
                             <ul class="clearfix">
-                                <li><a href="#">View More</a></li>
+                                <li><a href="{{ route('categorywise.product', $row->category_slug) }}">View More</a></li>
                             </ul>
                             <div class="tabs_line"><span></span></div>
                         </div>
@@ -523,8 +446,9 @@
                                                         {{-- <div class="product_color">
 
                                                         </div> --}}
-                                                        <a href="#" id="{{ $row->id }}" class="quick_view" data-toggle="modal" data-target="#quickModal"> Quick View </a>
-                                                        <button class="product_cart_button btn-sm">Add to Cart</button>
+                                                        {{-- <a href="#" id="{{ $row->id }}" class="quick_view" data-toggle="modal" data-target="#quickModal"> Quick View </a> --}}
+                                                        {{-- <button class="product_cart_button btn-sm">Add to Cart</button> --}}
+                                                        <button id="{{ $row->id }}"  class="product_cart_button btn-sm quick_view" data-toggle="modal" data-target="#quickModal">Add to Cart</button>
                                                     </div>
 
 
@@ -975,7 +899,7 @@
 
      <!-- Brands -->
 
-     {{-- <div class="brands">
+     <div class="brands">
         <div class="container">
             <div class="row">
                 <div class="col">
@@ -986,7 +910,7 @@
                         <div class="owl-carousel owl-theme brands_slider">
                             @foreach ($brand as $row)
                             <div class="owl-item">
-                                <div class="brands_item d-flex flex-column justify-content-center"><a href="#" title="{{ $row->brand_name }}"><img style="width: 100px; height: 50px;" src="{{ asset($row->brand_logo) }}" alt="{{ $row->brand_name }}"></a></div>
+                                <div class="brands_item d-flex flex-column justify-content-center"><a href="{{ route('brandwise.product',$row->brand_slug) }}" title="{{ $row->brand_name }}"><img style="width: 100px; height: 50px;" src="{{ asset($row->brand_logo) }}" alt="{{ $row->brand_name }}"></a></div>
                             </div>
                             @endforeach
 
@@ -1000,7 +924,7 @@
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <!-- Newsletter -->
 
@@ -1011,7 +935,7 @@
                     <div
                         class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
                         <div class="newsletter_title_container">
-                            <div class="newsletter_icon"><img src="images/send.png" alt=""></div>
+                            <div class="newsletter_icon"><img src="{{ asset('public/frontend') }}/images/send.png" alt=""></div>
                             <div class="newsletter_title">Sign up for Newsletter</div>
                             <div class="newsletter_text">
                                 <p>...and receive %20 coupon for first shopping.</p>
@@ -1054,8 +978,7 @@
     <!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 
-<script>
-    // $(document).ready(function() {
+{{-- <script>
         $(document).on('click', '.quick_view', function() {
             var quick_id = $(this).attr('id');
             // alert(quick_id)
@@ -1068,5 +991,26 @@
             });
 
         });
+</script> --}}
+
+<script>
+    $(document).on('click', '.quick_view', function() {
+    var quick_id = $(this).attr('id');
+
+    $('#quick_view_body').html(`
+        <div class="d-flex justify-content-center align-items-center" style="height: 100%;">
+            <i class="fas fa-spinner fa-spin" style="font-size: 2rem;"></i>
+        </div>
+    `);
+
+    $.ajax({
+        url: "{{ url('product-quick-view') }}/" + quick_id,
+        type: "GET",
+        success: function(data) {
+            $('#quick_view_body').html(data);
+        },
+    });
+});
+
 </script>
 @endsection

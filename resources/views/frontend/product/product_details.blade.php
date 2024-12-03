@@ -185,7 +185,16 @@ textarea {
                     @endif
 
                     <div class="order_info d-flex flex-row mt-4">
-                        <form action="#">
+                        {{-- <form action="#"> --}}
+                        <form action="{{ route('add.to.cart.quickView') }}" method="POST" id="add_to_cart">
+                            @csrf
+                            <input type="hidden" name="product_id" value="{{ $product->id }}">
+                            @if($product->discount_price == null)
+                            <input type="hidden" name="product_price" value="{{ $product->selling_price }}">
+                            @else
+                            <input type="hidden" name="product_price" value="{{ $product->discount_price }}">
+                            @endif
+
                             <div class="row">
                                 @isset($product->size)
                                 <div class="col-lg-6">
@@ -226,7 +235,7 @@ textarea {
                                 <!-- Product Quantity -->
                                 <div class="product_quantity clearfix">
                                     <span style="text-info">Quantity: </span>
-                                    <input id="quantity_input" type="text" pattern="[1-9]*" value="1">
+                                    <input id="quantity_input" name="qty" type="text" pattern="[1-9]*" value="1">
                                     <div class="quantity_buttons">
                                         <div id="quantity_inc_button" class="quantity_inc quantity_control"><i class="fas fa-chevron-up"></i></div>
                                         <div id="quantity_dec_button" class="quantity_dec quantity_control"><i class="fas fa-chevron-down"></i></div>
@@ -239,7 +248,14 @@ textarea {
                                 <div class="product_fav"><i class="fas fa-heart"></i>dbdb</div> --}}
 
                                 <div class="btn-group" role="group" aria-label="Basic example">
-                                    <button type="button" class="btn btn-primary">Add to Cart</button>
+
+                                    @if($product->stock_quantity < 1)
+                                    <button type="submit" class="btn btn-danger" disabled>Out of Stock</button>
+                                        @else
+                                        <button type="submit" class="btn btn-primary">Add to Cart</button>
+                                        @endif
+
+                                    {{-- <button type="button" class="btn btn-primary">Add to Cart</button> --}}
                                     <a href="{{ route('add.wishlist',$product->id) }}" type="submit" class="btn btn-outline-info"><i class="fas fa-heart"></i></a>
                                 </div>
                             </div>
@@ -515,7 +531,7 @@ textarea {
 
 <!-- Brands -->
 
-<div class="brands">
+{{-- <div class="brands">
     <div class="container">
         <div class="row">
             <div class="col">
@@ -536,32 +552,33 @@ textarea {
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
-<!-- Newsletter -->
 
-<div class="newsletter">
-    <div class="container">
-        <div class="row">
-            <div class="col">
-                <div class="newsletter_container d-flex flex-lg-row flex-column align-items-lg-center align-items-center justify-content-lg-start justify-content-center">
-                    <div class="newsletter_title_container">
-                        <div class="newsletter_icon"><img src="{{ asset('public/frontend') }}/images/send.png" alt=""></div>
-                        <div class="newsletter_title">Sign up for Newsletter</div>
-                        <div class="newsletter_text"><p>...and receive %20 coupon for first shopping.</p></div>
-                    </div>
-                    <div class="newsletter_content clearfix">
-                        <form action="#" class="newsletter_form">
-                            <input type="email" class="newsletter_input" required="required" placeholder="Enter your email address">
-                            <button class="newsletter_button">Subscribe</button>
-                        </form>
-                        <div class="newsletter_unsubscribe_link"><a href="#">unsubscribe</a></div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
 
 {{-- <script src="{{ asset('public/frontend') }}/js/product_custom.js"></script> --}}
+
+{{-- ajax request form edit --}}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<script>
+    $('#add_to_cart').submit(function(e) {
+        e.preventDefault();
+        // alert('done')
+        var url = $(this).attr('action');
+        var request = $(this).serialize();
+        // alert(url)
+        $.ajax({
+            type: 'POST',
+            url: url,
+            async: false,
+            data: request,
+            success: function(data) {
+                toastr.success(data);
+                $('#add_to_cart')[0].reset();
+                cart();
+            }
+        });
+    });
+</script>
 @endsection

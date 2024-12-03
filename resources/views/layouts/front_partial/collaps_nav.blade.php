@@ -25,9 +25,9 @@
                                 @endphp
                                 <li class="hassubs" style="margin-left: -10%">
                                     @if($subcategory->isEmpty())
-                                        <a href="#"><img src="{{ asset($row->icon) }}" width="18" height="18" alt="">{{ $row->category_name }}</a>
+                                        <a href="{{ route('categorywise.product', $row->category_slug) }}"><img src="{{ asset($row->icon) }}" width="18" height="18" alt="">{{ $row->category_name }}</a>
                                     @else
-                                        <a href="#"><img src="{{ asset($row->icon) }}" width="18" height="18" alt="">{{ $row->category_name }}<i class="fas fa-chevron-right"></i></a>
+                                        <a href="{{ route('categorywise.product', $row->category_slug) }}"><img src="{{ asset($row->icon) }}" width="18" height="18" alt="">{{ $row->category_name }}<i class="fas fa-chevron-right"></i></a>
                                     @endif
                                     @if(!$subcategory->isEmpty())
                                     <ul>
@@ -37,14 +37,14 @@
                                             @endphp
                                             <li class="hassubs">
                                                 @if($childsubcategory->isEmpty())
-                                                    <a href="#">{{ $sub->subcategory_name }}</a>
+                                                    <a href="{{ route('subcategorywise.product', $sub->subcategory_slug) }}">{{ $sub->subcategory_name }}</a>
                                                 @else
-                                                    <a href="#">{{ $sub->subcategory_name }}<i class="fas fa-chevron-right"></i></a>
+                                                    <a href="{{ route('subcategorywise.product', $sub->subcategory_slug) }}">{{ $sub->subcategory_name }}<i class="fas fa-chevron-right"></i></a>
                                                 @endif
                                                 @if(!$childsubcategory->isEmpty())
                                                 <ul>
                                                     @foreach ($childsubcategory as $child)
-                                                        <li><a href="#">{{ $child->childcategory_name }}</a></li>
+                                                        <li><a href="{{ route('childcategorywise.product', $child->childcategory_slug) }}">{{ $child->childcategory_name }}</a></li>
                                                     @endforeach
                                                 </ul>
                                                 @endif
@@ -62,39 +62,8 @@
                     <div class="main_nav_menu ml-auto">
                         <ul class="standard_dropdown main_nav_dropdown">
                             <li><a href="{{ url('/') }}">Home<i class="fas fa-chevron-down"></i></a></li>
-                            <li class="hassubs">
-                                <a href="#">Super Deals<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                </ul>
-                            </li>
-                            <li class="hassubs">
-                                <a href="#">Featured Brands<i class="fas fa-chevron-down"></i></a>
-                                <ul>
-                                    <li>
-                                        <a href="#">Menu Item<i class="fas fa-chevron-down"></i></a>
-                                        <ul>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                            <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                        </ul>
-                                    </li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                    <li><a href="#">Menu Item<i class="fas fa-chevron-down"></i></a></li>
-                                </ul>
-                            </li>
-                            <li class="hassubs">
+                            <li><a href="#">Campaign<i class="fas fa-chevron-down"></i></a></li>
+                            {{-- <li class="hassubs">
                                 <a href="#">Pages<i class="fas fa-chevron-down"></i></a>
                                 <ul>
                                     <li><a href="shop.html">Shop<i class="fas fa-chevron-down"></i></a></li>
@@ -105,9 +74,10 @@
                                     <li><a href="cart.html">Cart<i class="fas fa-chevron-down"></i></a></li>
                                     <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
                                 </ul>
-                            </li>
-                            <li><a href="blog.html">Blog<i class="fas fa-chevron-down"></i></a></li>
-                            <li><a href="contact.html">Contact<i class="fas fa-chevron-down"></i></a></li>
+                            </li> --}}
+                            <li><a href="#">Blog<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="#">About<i class="fas fa-chevron-down"></i></a></li>
+                            <li><a href="#">Contact<i class="fas fa-chevron-down"></i></a></li>
                         </ul>
                     </div>
 

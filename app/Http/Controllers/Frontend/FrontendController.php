@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Models\Brand;
 use App\Models\Category;
+use App\Models\Childcategory;
 use App\Models\Product;
 use App\Models\Review;
+use App\Models\Subcategory;
 use App\Models\User;
 use Illuminate\Http\Request;
 use DB;
@@ -35,7 +37,11 @@ class FrontendController extends Controller
         //-- recent view---//
         $recent_view = Product::where('status',1)->inRandomOrder()->limit(16)->get();
 
-        return view('frontend.index',compact('category','banner_product','featured','popular_products','trendy_product','home_category','brand','recent_view'));
+        //--today deal--//
+        $today_deal = Product::where('today_deal',1)->where('status',1)->orderBy('id','desc')->limit(6)->get();
+
+
+        return view('frontend.index',compact('category','banner_product','featured','popular_products','trendy_product','home_category','brand','recent_view','today_deal'));
     }
 
     //__single product page calling-----///
@@ -69,4 +75,70 @@ class FrontendController extends Controller
         return view('frontend.product.quick_view',compact('product'));
     }
     ///----product quick view---///
+
+
+    ///----category wise product page---///
+    public function categoryWiseProduct($slug){
+        $category = Category::where('category_slug',$slug)->first();
+        $subcategory = Subcategory::where('category_id',$category->id)->get();
+        $product = Product::where('category_id',$category->id)->where('status',1)->paginate(60);
+
+        $brand = Brand::all();
+
+        //-- recent view---//
+        $recent_view = Product::where('status',1)->inRandomOrder()->limit(16)->get();
+
+        return view('frontend.product.category_products',compact('category','subcategory','product','brand','recent_view'));
+    }
+    ///----category wise product page---///
+
+
+    //__subcategory wise product page calling-----///
+    public function subcategoryWiseProduct($slug){
+        $subcategory = Subcategory::where('subcategory_slug',$slug)->first();
+        $childcategory = Childcategory::where('subcategory_id',$subcategory->id)->get();
+        $category = Category::all();
+        $product = Product::where('subcategory_id',$subcategory->id)->where('status',1)->paginate(60);
+
+        $brand = Brand::all();
+
+        //-- recent view---//
+        $recent_view = Product::where('status',1)->inRandomOrder()->limit(16)->get();
+
+        return view('frontend.product.subcategory_products',compact('subcategory','childcategory','product','brand','recent_view','category'));
+    }
+    //__subcategory wise product page calling-----///
+
+
+    //__childcategory wise product page calling-----///
+    public function childcategoryWiseProduct($slug){
+        $childcategory = Childcategory::where('childcategory_slug',$slug)->first();
+        $category = Category::all();
+        $product = Product::where('childcategory_id',$childcategory->id)->where('status',1)->paginate(60);
+
+        $brand = Brand::all();
+
+        //-- recent view---//
+        $recent_view = Product::where('status',1)->inRandomOrder()->limit(16)->get();
+
+        return view('frontend.product.childcategory_products',compact('childcategory','product','brand','recent_view','category'));
+    }
+    //__childcategory wise product page calling-----///
+
+
+    //---brand wise product page calling-----///
+    public function brandWiseProduct($slug){
+        $brand = Brand::where('brand_slug',$slug)->first();
+        $category = Category::all();
+        $product = Product::where('brand_id',$brand->id)->where('status',1)->paginate(60);
+
+        $brands = Brand::all();
+        //-- recent view---//
+        $recent_view = Product::where('status',1)->inRandomOrder()->limit(16)->get();
+
+        return view('frontend.product.brand_products',compact('brand','product','recent_view','category','brands'));
+    }
+    //---brand wise product page calling-----///
+
+
 }
