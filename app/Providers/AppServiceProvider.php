@@ -5,6 +5,7 @@ namespace App\Providers;
 use Illuminate\Support\ServiceProvider;
 use DB;
 use Illuminate\Pagination\Paginator;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -31,5 +32,8 @@ class AppServiceProvider extends ServiceProvider
 
         $setting = DB::table('settings')->first();
         view()->share('setting',$setting);
+
+        $taxRate = env('TAX_RATE', 0);
+        Cart::setGlobalTax((float)$taxRate);
     }
 }

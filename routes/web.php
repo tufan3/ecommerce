@@ -83,6 +83,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
      //setting profile--//
      Route::get('/home/setting','ProfileController@customerSetting')->name('customer.setting');
      Route::POST('/home/password/update','ProfileController@customerPasswordChange')->name('customer.password.change');
+     Route::POST('/home/shipping/update','ProfileController@customerShippingDetails')->name('customer.shipping.details');
 
     //__reviews for product -----//
     Route::post('/store/review','ReviewController@store')->name('review.store');
@@ -92,11 +93,16 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
 
     //news letter--//
     Route::post('/store/newsletter','FrontendController@storeNewsLetter')->name('store.newsletter');
+
+    //--checkout route--//
+    Route::get('/checkout','CheckoutController@checkout')->name('checkout');
+    Route::post('/apply/coupon','CheckoutController@applyCoupon')->name('apply.coupon');
+    Route::get('/remove/coupon','CheckoutController@removeCoupon')->name('coupon.remove');
 });
 
 
 
 
-Route::get('/shop/product', function () {
-    return view('frontend.product.category_products');
-});
+// Route::get('/shop/product', function () {
+//     return view('frontend.product.category_products');
+// });

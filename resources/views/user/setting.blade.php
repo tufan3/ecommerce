@@ -38,42 +38,43 @@
                     <div class="card-body">
                         <h4>Your Shipping Details</h4>
                         <div>
-                            <form action="" method="POST">
+                            <form action="{{ route('customer.shipping.details') }}" method="POST" id="shipping_details">
                                 @csrf
                                 <div class="form-group">
                                     <label for="product_id">Shipping Name</label>
-                                    <input type="text" class="form-control text-dark" name="shipping_name" value="">
+                                    <input type="text" class="form-control text-dark" name="shipping_name" value="{{ $shipping->shipping_name ?? '' }}">
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-lg-6">
                                         <label for="shipping_email">Shipping Email</label>
-                                        <input type="email" name="shipping_email" id="shipping_email" class="form-control">
+                                        <input type="email" name="shipping_email" id="shipping_email" class="form-control" value="{{ $shipping->shipping_email ?? '' }}">
                                     </div>
                                     <div class="form-group col-lg-6">
                                         <label for="shipping_phone">Shipping Phone</label>
-                                        <input type="text" class="form-control text-dark" name="shipping_phone" value="">
+                                        <input type="text" class="form-control text-dark" name="shipping_phone" value="{{ $shipping->shipping_phone ?? '' }}">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="shipping_address">Shipping Address</label>
-                                    <input type="text" class="form-control text-dark" name="shipping_address" value="">
+                                    <input type="text" class="form-control text-dark" name="shipping_address" value="{{ $shipping->shipping_address ?? '' }}">
                                 </div>
                                 <div class="row">
                                     <div class="form-group col-lg-4">
                                         <label for="shipping_country">Shipping Country</label>
-                                        <input type="text" class="form-control text-dark" name="shipping_country" value="">
+                                        <input type="text" class="form-control text-dark" name="shipping_country" value="{{ $shipping->shipping_country ?? '' }}">
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <label for="shipping_city">Shipping City</label>
-                                        <input type="text" class="form-control text-dark" name="shipping_city" value="">
+                                        <input type="text" class="form-control text-dark" name="shipping_city" value="{{ $shipping->shipping_city ?? '' }}">
                                     </div>
                                     <div class="form-group col-lg-4">
                                         <label for="shipping_zipcode">Shipping Zipcode</label>
-                                        <input type="text" class="form-control text-dark" name="shipping_zipcode" value="">
+                                        <input type="text" class="form-control text-dark" name="shipping_zipcode" value="{{ $shipping->shipping_zipcode ?? '' }}">
                                     </div>
                                 </div>
                                 <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
+
                         </div>
                     </div>
                     <br>
@@ -106,4 +107,35 @@
             </div>
         </div>
     </div>
+
+      <!-- jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+
+<script>
+    $('#shipping_details').submit(function(e) {
+        e.preventDefault();
+        var url = $(this).attr('action');
+        var request = $(this).serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: url,
+            data: request,
+            success: function(data) {
+                toastr.success(data);
+                location.reload();
+                // $('#shipping_details')[0].reset();
+
+            },
+            // error: function(xhr) {
+            //     if (xhr.status === 422) {
+            //         var errors = xhr.responseJSON.errors;
+            //         $.each(errors, function(key, value) {
+            //             toastr.error(value[0]);
+            //         });
+            //     }
+            // }
+        });
+    });
+</script>
 @endsection

@@ -71,8 +71,8 @@
 							<div class="top_bar_user">
 								<ul class="standard_dropdown top_bar_dropdown">
 									<li>
-										<a href="#">Login<i class="fas fa-chevron-down"></i></a>
-										<ul style="width: 300px; padding: 10px;">
+										<a href="#" data-toggle="modal" data-target="#loginModal">Login<i class="fas fa-chevron-down" ></i></a>
+										{{-- <ul style="width: 300px; padding: 10px;">
 											<div>
                                                 <br>
                                                 <form action="{{ route('login') }}" method="POST">
@@ -88,7 +88,7 @@
                                                     <button type="submit" class="btn btn-info btn-sm">Login</button>
                                                 </form>
                                             </div>
-										</ul>
+										</ul> --}}
 									</li>
 									<li>
 										<a href="{{ route('register.user') }}">Register</a>
@@ -177,6 +177,8 @@
 			</div>
 		</div>
 
+
+
         {{-- main navbar for yield --}}
         @yield('navbar')
 
@@ -189,6 +191,38 @@
 
 
 </div>
+
+{{-- category add modal --}}
+<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="loginModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title fs-5" id="loginModalLabel">Login</h4>
+                <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <form action="{{ route('login') }}" method="POST">
+                @csrf
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" id="email" class="form-control" placeholder="Enter your email">
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password">
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-primary">Login</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+{{-- category add modal --}}
 
 <script src="{{ asset('public/frontend') }}/js/jquery-3.3.1.min.js"></script>
 <script src="{{ asset('public/frontend') }}/styles/bootstrap4/popper.js"></script>
