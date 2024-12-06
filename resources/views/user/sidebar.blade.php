@@ -9,11 +9,11 @@
         <a href="{{ route('wishlist') }}" class="text-muted">
             <li class="list-group-item"><i class="fas fa-heart"></i> Wishlist</li>
         </a>
-        <a href="#" class="text-muted">
+        <a href="{{ route('my.order') }}" class="text-muted">
             <li class="list-group-item"><i class="fas fa-file-alt"></i> My Order</li>
         </a>
         <a href="{{ route('customer.setting') }}" class="text-muted">
-            <li class="list-group-item"><i class="fas fa-edit"></i> Setting</li>
+            <li class="list-group-item"><i class="fas fa-edit"></i> Change Password & Shipping Details</li>
         </a>
         <a href="#" class="text-muted">
             <li class="list-group-item"><i class="fab fa-telegram-plane"></i> Open Ticket</li>

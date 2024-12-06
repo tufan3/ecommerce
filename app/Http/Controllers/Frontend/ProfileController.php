@@ -86,4 +86,20 @@ class ProfileController extends Controller
         }
     }
     //--- shipping information in customer---//
+
+
+    //--my order---//
+    public function myOrder() {
+        // $order = DB::table('orders')
+        //             ->join('users', 'orders.user_id', '=', 'users.id')
+        //             ->select('orders.*', 'users.name')
+        //             ->where('orders.user_id', Auth::user()->id)
+        //             ->orderBy('orders.created_at', 'desc')
+        //             ->get();
+
+        $order = DB::table('orders')->where('user_id', Auth::user()->id)->orderBy('date', 'desc')->get();
+
+        return view('user.my_order', compact('order'));
+    }
+    //--my order---//
 }

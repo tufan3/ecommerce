@@ -84,6 +84,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
      Route::get('/home/setting','ProfileController@customerSetting')->name('customer.setting');
      Route::POST('/home/password/update','ProfileController@customerPasswordChange')->name('customer.password.change');
      Route::POST('/home/shipping/update','ProfileController@customerShippingDetails')->name('customer.shipping.details');
+     Route::get('/my/order','ProfileController@myOrder')->name('my.order');
 
     //__reviews for product -----//
     Route::post('/store/review','ReviewController@store')->name('review.store');
@@ -98,6 +99,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
     Route::get('/checkout','CheckoutController@checkout')->name('checkout');
     Route::post('/apply/coupon','CheckoutController@applyCoupon')->name('apply.coupon');
     Route::get('/remove/coupon','CheckoutController@removeCoupon')->name('coupon.remove');
+    Route::post('/order/place','CheckoutController@orderPlace')->name('order.place');
 });
 
 

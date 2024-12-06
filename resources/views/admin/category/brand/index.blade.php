@@ -110,7 +110,6 @@
             </div>
         </div>
     </div>
-
     {{-- brand add modal --}}
 
     {{-- brand edit modal --}}

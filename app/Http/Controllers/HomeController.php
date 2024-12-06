@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -23,7 +25,30 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $order = DB::table('orders')->where('user_id',Auth::user()->id)->orderBy('date', 'DESC')->get();
+
+        //--total order--//
+        $total_order = DB::table('orders')->where('user_id',Auth::user()->id)->count();
+        //--total order--//
+
+        //--complete order--//
+        $complete_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','completed')->count();
+        //--complete order--//
+
+        //--pending order--//
+        // $pending_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','pending')->count();
+        //--pending order--//
+
+        //--cancelled order--//
+        $cancelled_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','cancelled')->count();
+        //--cancelled order--//
+
+        //--return order--//
+        $return_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','return')->count();
+        //--return order--//
+
+        return view('home',compact('order','total_order','complete_order','cancelled_order','return_order'));
+
         // return redirect()->to('/');
     }
 

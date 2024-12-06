@@ -26,60 +26,17 @@
 
     <div class="container mt-5">
         <div class="row justify-content-center">
-            <div class="col-md-4">
+            <div class="col-md-3">
                 @include('user.sidebar')
             </div>
-            <div class="col-md-8">
+            <div class="col-md-9">
                 <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}
+                    <div class="card-header">{{ __('Order List') }}
                         <a href="{{ route('write.review') }}" class="" style="float: right;"><i class="fas fa-pencil-alt"></i> Write a review</a>
                     </div>
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-lg-3">
-                                <a href="">
-                                    <div class="card" style="height: 100%">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-success text-center">Total Orders</h5>
-                                            <h6 class="card-subtitle mb-2 text-center text-muted">{{ $total_order }}</h6>
-                                        </div>
-
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-3">
-                                <a href="">
-                                    <div class="card" style="height: 100%">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-primary text-center">Complete Orders</h5>
-                                            <h6 class="card-subtitle mb-2 text-center text-muted">{{ $complete_order }}</h6>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-3">
-                                <a href="">
-                                    <div class="card" style="height: 100%">
-                                        <div class="card-body">
-                                            <h5 class="card-title text-danger text-center">Cancel Orders</h5>
-                                            <h6 class="card-subtitle mb-2 text-center text-muted">{{ $cancelled_order }}</h6>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="col-lg-3">
-                                <a href="">
-                                    <div class="card" style="height: 100%">
-                                        <div class="card-body">
-                                            <h6 class="card-title text-warning text-center">Return Orders</h6>
-                                            <h6 class="card-subtitle mb-2 text-center text-muted">{{ $return_order }}</h6>
-                                        </div>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="mt-4">
-                            <h5>Recent Order</h5>
+                        <div class="">
+                            {{-- <h5>Recent Order</h5> --}}
                             <table class="table table-hover" id="example1">
                                 <thead>
                                     <tr>
@@ -88,6 +45,7 @@
                                         <th>Total</th>
                                         <th>Payment Type</th>
                                         <th>Status</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
@@ -111,6 +69,10 @@
                                             @elseif($row->status == 'cancelled')
                                                 <span class="badge badge-danger">Cancelled</span>
                                             @endif
+                                        </td>
+                                        <td>
+                                            <a href="" class="btn btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                                            {{-- <a href="{{ route('order.invoice', $row->id) }}" class="btn btn-sm btn-info"><i class="fas fa-file-invoice-dollar"></i> Invoice</a> --}}
                                         </td>
                                     </tr>
                                     @endforeach

@@ -78,15 +78,15 @@
                         @if(Session::has('coupon'))
                         <span style="font-size: 14px;line-height: 40px;">Coupon:({{ Session::get('coupon')['name'] }}) <a href="{{ route('coupon.remove') }}" class="text-danger"> X</a> <span style="float: right">{{ $setting->currency }}{{ Session::get('coupon')['discount'] }}</span></span><br>
                         @endif
-                        <span style="font-size: 14px;line-height: 40px;">Tax (5%): <span style="float: right">{{ $setting->currency }}{{ Cart::tax() }}</span></span><br>
-                        <span style="font-size: 14px;line-height: 40px;">Shipping: <span style="float: right">{{ $setting->currency }}60</span></span><br>
+                        <span style="font-size: 14px;line-height: 40px;">Tax (0%): <span style="float: right">{{ $setting->currency }}{{ Cart::tax() }}</span></span><br>
+                        <span style="font-size: 14px;line-height: 40px;">Shipping: <span style="float: right">{{ $setting->currency }}00.00</span></span><br>
                         @if(Session::has('coupon'))
-                        <span style="font-size: 14px;line-height: 40px;">Total: <span style="float: right">{{ $setting->currency }}{{ Session::get('coupon')['after_discount'] + 60 }}</span></span><br>
+                        <span style="font-size: 14px;line-height: 40px;">Total: <span style="float: right">{{ $setting->currency }}{{ Session::get('coupon')['after_discount']}}</span></span><br>
                         @else
-                        @php
+                        {{-- @php
                             $total = (float) str_replace(',', '', Cart::total());
-                        @endphp
-                        <span style="font-size: 14px;line-height: 40px;">Total: <span style="float: right">{{ $setting->currency }}{{ $total + 60 }}</span></span><br>
+                        @endphp --}}
+                        <span style="font-size: 14px;line-height: 40px;">Total: <span style="float: right">{{ $setting->currency }}{{ Cart::total() }}</span></span><br>
                         @endif
                     </div>
                 </div>
@@ -131,9 +131,9 @@
                     </div>
                 </div> --}}
 
-                <form action="">
+                <form action="{{ route('order.place') }}" method="POST">
                     @csrf
-                    <input type="text" name="c_shipping_id" id="" value="{{ $billing_address->id }}">
+                    <input type="hidden" name="shipping_id" id="" value="{{ $billing_address->id }}">
                     {{-- <input type="hidden" name="c_phone" id="" value="{{ $billing_address->shipping_phone }}">
                     <input type="hidden" name="c_email" id="" value="{{ $billing_address->shipping_email }}">
                     <input type="hidden" name="c_country" id="" value="{{ $billing_address->shipping_country }}">
@@ -145,15 +145,15 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <label for="">Paypal</label><br>
-                                    <input type="radio" name="payment_method">
+                                    <input type="radio" name="payment_type" value="Paypal">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">SSL Commerze</label><br>
-                                    <input type="radio" name="payment_method">
+                                    <input type="radio" name="payment_type" value="SSL Commerze">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Cash On Delivery</label><br>
-                                    <input type="radio" name="payment_method" checked>
+                                    <input type="radio" name="payment_type" value="Cash On Delivery" checked>
                                 </div>
                             </div>
                         </div>
