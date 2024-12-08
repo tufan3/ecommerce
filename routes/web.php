@@ -100,6 +100,12 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
     Route::post('/apply/coupon','CheckoutController@applyCoupon')->name('apply.coupon');
     Route::get('/remove/coupon','CheckoutController@removeCoupon')->name('coupon.remove');
     Route::post('/order/place','CheckoutController@orderPlace')->name('order.place');
+
+    //--support ticket--//
+    Route::get('/open/ticket','TicketController@openTicket')->name('open.ticket');
+    Route::post('/store/ticket','TicketController@storeTicker')->name('store.ticker');
+    Route::get('/show/ticket/{id}','TicketController@showTicker')->name('show.ticket');
+    Route::POST('/reply/ticket','TicketController@replyTicker')->name('reply.ticket');
 });
 
 

@@ -138,6 +138,16 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
             Route::get('/edit/{id}', 'PageController@edit')->name('page.edit');
             Route::post('/update/{id}', 'PageController@update')->name('page.update');
         });
+
+    // ticket route
+        Route::group(['prefix' => 'ticket'], function (){
+            Route::get('/', 'TicketController@index')->name('ticket.index');
+            Route::get('/show/{id}', 'TicketController@show')->name('admin.ticket.show');
+            Route::post('/ticket/reply', 'TicketController@replyTicketStore')->name('admin.store.reply');
+            Route::get('/ticket/close/{id}', 'TicketController@closeTicket')->name('admin.close.ticket');
+            Route::get('/ticket/delete/{id}', 'TicketController@destroyTicket')->name('admin.ticket.delete');
+        });
+
     });
 });
 

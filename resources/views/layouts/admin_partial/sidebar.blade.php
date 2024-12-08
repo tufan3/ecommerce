@@ -153,6 +153,26 @@
           </li>
           {{-- pickup point part --}}
 
+          {{-- ticket part --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-truck"></i>
+              <p>
+                Ticket
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('ticket.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Ticket</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- Ticket part --}}
+
           {{-- setting part --}}
           <li class="nav-item">
             <a href="#" class="nav-link">

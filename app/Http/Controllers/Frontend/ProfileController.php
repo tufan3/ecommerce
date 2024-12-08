@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Shipping;
+use App\Models\Ticket;
+
+use Intervention\Image\Facades\Image;
+
 class ProfileController extends Controller
 {
     public function __construct()
