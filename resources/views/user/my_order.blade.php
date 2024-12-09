@@ -71,7 +71,7 @@
                                             @endif
                                         </td>
                                         <td>
-                                            <a href="" class="btn btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
+                                            <a href="{{ route('view.order', $row->id) }}" class="btn btn btn-sm btn-info"><i class="fas fa-eye"></i></a>
                                             {{-- <a href="{{ route('order.invoice', $row->id) }}" class="btn btn-sm btn-info"><i class="fas fa-file-invoice-dollar"></i> Invoice</a> --}}
                                         </td>
                                     </tr>

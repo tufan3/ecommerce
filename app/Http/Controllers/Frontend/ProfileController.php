@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 use App\Models\Shipping;
-use App\Models\Ticket;
+use App\Models\Order;
 
 use Intervention\Image\Facades\Image;
 
@@ -106,4 +106,16 @@ class ProfileController extends Controller
         return view('user.my_order', compact('order'));
     }
     //--my order---//
+
+
+    //--customer order details---//
+    public function viewOrder($id) {
+        // $order = Order::find($id);
+        $order = DB::table('orders')->leftJoin('shippings', 'orders.shipping_id', 'shippings.id')->select('orders.*', 'shippings.shipping_name','shippings.shipping_phone','shippings.shipping_email')->where('orders.id',$id)->first();
+
+        $order_details = DB::table('orderdetails')->leftJoin('products', 'orderdetails.product_id','products.id')->select('orderdetails.*','products.product_thumbnail')->where('orderdetails.order_id', $id)->get();
+        return view('user.order_details', compact('order', 'order_details'));
+    }
+    //--customer order details---//
+
 }

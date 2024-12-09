@@ -166,4 +166,29 @@ class FrontendController extends Controller
     }
     //--news letter ---//
 
+    //---order tracking ---//
+    public function orderTracking(){
+        return view('frontend.order_tracking');
+    }
+    //---order tracking ---//
+
+
+    //---order Check ---//
+    public function checkingOrder(Request $request){
+            $order_number = $request->order_number;
+            $check = DB::table('orders')->where('order_number', $order_number)->first();
+            if($check){
+                $order = DB::table('orders')->leftJoin('shippings', 'orders.shipping_id', 'shippings.id')->select('orders.*', 'shippings.shipping_name','shippings.shipping_phone','shippings.shipping_email')->where('orders.id',$check->id)->first();
+
+                $order_details = DB::table('orderdetails')->leftJoin('products', 'orderdetails.product_id','products.id')->select('orderdetails.*','products.product_thumbnail')->where('orderdetails.order_id', $check->id)->get();
+
+                return view('frontend.order_details', compact('order', 'order_details'));
+            }else{
+                $notification = array('message' => 'Invalid order number! try again', 'alert-type' => 'error');
+                return redirect()->back()->with($notification);
+            }
+    }
+    //---order Check ---//
+
+
 }

@@ -64,8 +64,6 @@
 										<a href="#">{{ Auth::user()->name }}<i class="fas fa-chevron-down"></i></a>
 										<ul style="width: 150px">
 											<li><a href="{{ route('home') }}">Profile</a></li>
-											<li><a href="#">Setting</a></li>
-											<li><a href="#">Order List</a></li>
 											<li><a href="{{ route('user.logout') }}">Logout</a></li>
 										</ul>
 									</li>
