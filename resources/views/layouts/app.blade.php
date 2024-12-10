@@ -51,8 +51,8 @@
 			<div class="container">
 				<div class="row">
 					<div class="col d-flex flex-row">
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('public/frontend') }}/images/phone.png" alt=""></div>+88017XX-XXXXXX</div>
-						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('public/frontend') }}/images/mail.png" alt=""></div><a href=""><span class="__cf_email__" data-cfemail="">robiultufan.dev@gmail.com</span></a></div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('public/frontend') }}/images/phone.png" alt=""></div>{{ $setting->phone_one }}</div>
+						<div class="top_bar_contact_item"><div class="top_bar_icon"><img src="{{ asset('public/frontend') }}/images/mail.png" alt=""></div><a href="mailto:{{ $setting->main_email }}"><span class="__cf_email__" data-cfemail="">{{ $setting->main_email }}</span></a></div>
 
                         {{-- <div class="user_icon"><img src="{{ asset('public/frontend') }}/images/user.svg" alt=""></div> --}}
 						<div class="top_bar_content ml-auto">
@@ -116,7 +116,7 @@
 					<!-- Logo -->
 					<div class="col-lg-2 col-sm-3 col-3 order-1">
 						<div class="logo_container">
-							<div class="logo"><a href="{{ url('/') }}"><img style="width: 65%; height: 80px;" class="rounded-5" src="{{ asset('public/frontend') }}/images/tufan_logo.png" alt="" srcset=""></a></div>
+							<div class="logo"><a href="{{ url('/') }}"><img style="width: 65%; height: 80px;" class="rounded-5" src="{{ asset($setting->logo) }}" alt="" srcset=""></a></div>
 						</div>
 					</div>
 

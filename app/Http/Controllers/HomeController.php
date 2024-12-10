@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $order = DB::table('orders')->where('user_id',Auth::user()->id)->orderBy('date', 'DESC')->get();
+        $order = DB::table('orders')->where('user_id', Auth::user()->id)->orderBy('date', 'DESC')->get();
 
         //--total order--//
         $total_order = DB::table('orders')->where('user_id',Auth::user()->id)->count();

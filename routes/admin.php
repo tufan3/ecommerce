@@ -129,6 +129,13 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
             Route::post('/Update/{id}', 'SettingController@websiteSettingUpdate')->name('website.setting.update');
         });
 
+        //__payment gateway route
+        Route::group(['prefix' => 'payment-gateway'], function (){
+            Route::get('/', 'SettingController@paymentGateway')->name('payment.gateway');
+            Route::post('/Update-aamarpay', 'SettingController@aamarpayUpdate')->name('update.aamarpay');
+            Route::post('/Update-surjopay', 'SettingController@surjopayUpdate')->name('update.surjopay');
+        });
+
     //__page route
         Route::group(['prefix' => 'page'], function (){
             Route::get('/', 'PageController@index')->name('page.index');

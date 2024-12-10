@@ -47,9 +47,21 @@
         <div class="header">
             <h1>Order Place Successfully</h1>
         </div>
+        @php
+            if(Session::has('coupon')){
+                $subtotal = Cart::subtotal();
+                $total = Session::get('coupon')['after_discount'];
+            }else{
+                $subtotal = Cart::subtotal();
+                $total = Cart::total();
+            }
+        @endphp
+
         <p>Dear <strong>{{ $shipping_details->shipping_name }}</strong>,</p>
         <p>Order ID: {{ $order['order_number'] }}</p>
         <p>Order Date: {{ $order['date'] }}</p>
+        <p>Sub Total: {{ $subtotal }}</p>
+        <p>Total: {{ $total }}</p>
         <hr>
         <p>Thank you for your order! Here are the details:</p>
         <div class="order-details">

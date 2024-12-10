@@ -13,7 +13,7 @@
                         <div class="logo"><a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt="" style="width: 65%; height: 80px;"></a></div>
                     </div>
                     <div class="footer_title">Got Question? Call Us 24/7</div>
-                    <div class="footer_phone">+88{{ $setting->phone_one }}@if($setting->phone_two != null)
+                    <div class="footer_phone">+88{{ $setting->phone_two }}@if($setting->phone_two != null)
                         , +88{{ $setting->phone_two }}
                     @endif</div>
                     <div class="footer_phone">{{ $setting->main_email }}@if($setting->support_email != null)

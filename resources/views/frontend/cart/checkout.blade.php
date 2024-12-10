@@ -148,12 +148,12 @@
                                     <input type="radio" name="payment_type" value="Paypal">
                                 </div>
                                 <div class="col-md-4">
-                                    <label for="">SSL Commerze</label><br>
-                                    <input type="radio" name="payment_type" value="SSL Commerze">
+                                    <label for="">Online</label><br>
+                                    <input type="radio" name="payment_type" checked value="Aamarpay">
                                 </div>
                                 <div class="col-md-4">
                                     <label for="">Cash On Delivery</label><br>
-                                    <input type="radio" name="payment_type" value="Cash On Delivery" checked>
+                                    <input type="radio" name="payment_type" value="Cash On Delivery">
                                 </div>
                             </div>
                         </div>
