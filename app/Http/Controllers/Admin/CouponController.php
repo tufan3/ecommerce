@@ -27,7 +27,7 @@ class CouponController extends Controller
                 ->addColumn('action', function ($row) {
                     $actionbtn = '<a href="#" class="btn btn-info btn-sm edit" data-id="' . $row->id . '" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></a>
 
-                <a href="' . route('coupon.delete', [$row->id]) . '" id="delete_coupon" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>';
+                    <a href="' . route('coupon.delete', [$row->id]) . '" id="delete_coupon" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>';
                     return $actionbtn;
                 })
                 ->rawColumns(['action'])

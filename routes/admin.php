@@ -99,6 +99,15 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::post('/update', 'CampaignController@update')->name('campaign.update');
     });
 
+    //---order route
+    Route::group(['prefix' => 'order'], function (){
+        Route::get('/', 'OrderController@index')->name('admin.order.index');
+        Route::get('/admin/edit/{id}', 'OrderController@edit');
+        Route::post('/update', 'OrderController@update')->name('admin.order.update');
+        Route::get('/admin/view/{id}', 'OrderController@orderShow');
+        Route::get('/admin/delete/{id}', 'OrderController@orderDestroy')->name('admin.order.delete');
+    });
+
 // pickup point route
     Route::group(['prefix' => 'pickup-point'], function (){
         Route::get('/', 'PickupController@index')->name('pickuppoint.index');

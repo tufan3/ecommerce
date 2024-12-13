@@ -46,8 +46,11 @@ class FrontendController extends Controller
         //--website revire--//
         $website_review = Websitereview::where('status',1)->orderBy('review_date','DESC')->limit(12)->get();
 
+        //--campaign--//
+        $campaign = DB::table('campaigns')->where('status','active')->orderBy('id','desc')->first();
 
-        return view('frontend.index',compact('category','banner_product','featured','popular_products','trendy_product','home_category','brand','recent_view','today_deal','website_review'));
+
+        return view('frontend.index',compact('category','banner_product','featured','popular_products','trendy_product','home_category','brand','recent_view','today_deal','website_review','campaign'));
     }
 
     //__single product page calling-----///

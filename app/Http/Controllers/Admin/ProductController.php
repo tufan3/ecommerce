@@ -13,8 +13,6 @@ use Illuminate\Http\Request;
 use DB;
 use DataTables;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Str;
-use Intervention\Image\Facades\Image;
 
 
 class ProductController extends Controller

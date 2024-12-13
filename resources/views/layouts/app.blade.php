@@ -206,7 +206,7 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form action="{{ route('login') }}" method="POST">
+            {{-- <form action="{{ route('login') }}" method="POST">
                 @csrf
                 <div class="modal-body">
                     <div class="form-group">
@@ -221,7 +221,74 @@
                 <div class="modal-footer">
                     <button type="submit" class="btn btn-primary">Login</button>
                 </div>
-            </form>
+            </form> --}}
+
+            <div class="card-body">
+                <form method="POST" action="{{ route('login') }}">
+                    @csrf
+
+                    <div class="mb-3">
+                        <div class="">
+                            <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" placeholder="Email" value="{{ old('email') }}" required autocomplete="email" autofocus>
+
+                            @if(session('error'))
+                                <strong style="color: red;">{{ session('error') }}</strong>
+                            @endif
+
+                            @error('email')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="mb-3">
+                        <div class="">
+                            <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password" placeholder="Password">
+
+                            @error('password')
+                                <span class="invalid-feedback" role="alert">
+                                    <strong>{{ $message }}</strong>
+                                </span>
+                            @enderror
+                        </div>
+                    </div>
+
+                    <div class="row mb-3 ml-2">
+                        <div class="col-md-12 d-flex justify-content-between align-items-center">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                <label class="form-check-label" for="remember">
+                                    {{ __('Remember Me') }}
+                                </label>
+                            </div>
+                            <div>
+                                <button type="submit" class="btn btn-primary">
+                                    {{ __('Login') }}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+                <div class="social-auth-links text-center mt-2 mb-3">
+                    {{-- <a href="#" class="btn btn-block btn-primary">
+                      <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                    </a> --}}
+                    <a href="#" class="btn btn-block btn-danger">
+                      <i class="fab fa-google-plus mr-2"></i> Sign in using Google
+                    </a>
+                  </div>
+
+                  <div class="">
+                    @if (Route::has('password.request'))
+                  <a class="" href="{{ route('password.request') }}">
+                      {{ __('Forgot Your Password?') }}
+                  </a>
+                  </div>
+              @endif
+            </div>
         </div>
     </div>
 </div>

@@ -24,13 +24,13 @@
 
                         </div>
                         @if (session('error'))
-                                    <strong style="color: red;">{{ session('error') }}</strong>
-                            @endif
-                            @error('email')
-                                <span class="invalid-feedback" role="alert">
-                                    <strong>{{ $message }}</strong>
-                                </span>
-                            @enderror
+                            <strong style="color: red;">{{ session('error') }}</strong>
+                        @endif
+                        @error('email')
+                            <span class="invalid-feedback" role="alert">
+                                <strong>{{ $message }}</strong>
+                            </span>
+                        @enderror
                         <div class="input-group mb-3">
                             <input type="password" name="password"
                                 class="form-control @error('password') is-invalid @enderror" placeholder="Password" required
@@ -69,14 +69,14 @@
                         </div>
                     </form>
 
-                    {{-- <div class="social-auth-links text-center mt-2 mb-3">
-          <a href="#" class="btn btn-block btn-primary">
-            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
-          </a>
-          <a href="#" class="btn btn-block btn-danger">
-            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
-          </a>
-        </div> --}}
+                    <div class="social-auth-links text-center mt-2 mb-3">
+                        <a href="#" class="btn btn-block btn-primary">
+                            <i class="fab fa-facebook mr-2"></i> Sign in using Facebook
+                        </a>
+                        <a href="#" class="btn btn-block btn-danger">
+                            <i class="fab fa-google-plus mr-2"></i> Sign in using Google+
+                        </a>
+                    </div>
                     <!-- /.social-auth-links -->
 
                     <p class="mb-1">
