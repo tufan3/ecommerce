@@ -122,8 +122,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
     })->name('cancel');
 });
 
-
-
+//--socialtie--//
+Route::get('oauth/{drive}', [App\Http\Controllers\Auth\LoginController::class, 'redirectToProvider'])->name('social.oauth');
+Route::get('oauth/{drive}/callback', [App\Http\Controllers\Auth\LoginController::class, 'handleProviderCallback'])->name('social.callback');
 
 // Route::get('/shop/product', function () {
 //     return view('frontend.product.category_products');
