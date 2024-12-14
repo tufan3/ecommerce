@@ -25,6 +25,17 @@ class CreateUsersTable extends Migration
             $table->string('provider',20)->nullable();
             $table->string('provider_id')->nullable();
             $table->string('access_token')->nullable();
+            $table->integer('category')->nullable()->default(0);
+            $table->integer('product')->nullable()->default(0);
+            $table->integer('offer')->nullable()->default(0);
+            $table->integer('order')->nullable()->default(0);
+            $table->integer('blog')->nullable()->default(0);
+            $table->integer('pickup')->nullable()->default(0);
+            $table->integer('ticket')->nullable()->default(0);
+            $table->integer('contact')->nullable()->default(0);
+            $table->integer('report')->nullable()->default(0);
+            $table->integer('setting')->nullable()->default(0);
+            $table->integer('userrole')->nullable()->default(0);
             $table->rememberToken();
             $table->timestamps();
         });

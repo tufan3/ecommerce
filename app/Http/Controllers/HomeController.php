@@ -25,31 +25,35 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $order = DB::table('orders')->where('user_id', Auth::user()->id)->orderBy('date', 'DESC')->get();
+        if(!Auth::user()->is_admin == 1){
+            $order = DB::table('orders')->where('user_id', Auth::user()->id)->orderBy('date', 'DESC')->get();
 
-        //--total order--//
-        $total_order = DB::table('orders')->where('user_id',Auth::user()->id)->count();
-        //--total order--//
+            //--total order--//
+            $total_order = DB::table('orders')->where('user_id',Auth::user()->id)->count();
+            //--total order--//
 
-        //--complete order--//
-        $complete_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','completed')->count();
-        //--complete order--//
+            //--complete order--//
+            $complete_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','completed')->count();
+            //--complete order--//
 
-        //--pending order--//
-        // $pending_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','pending')->count();
-        //--pending order--//
+            //--pending order--//
+            // $pending_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','pending')->count();
+            //--pending order--//
 
-        //--cancelled order--//
-        $cancelled_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','cancelled')->count();
-        //--cancelled order--//
+            //--cancelled order--//
+            $cancelled_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','cancelled')->count();
+            //--cancelled order--//
 
-        //--return order--//
-        $return_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','return')->count();
-        //--return order--//
+            //--return order--//
+            $return_order = DB::table('orders')->where('user_id',Auth::user()->id)->where('status','return')->count();
+            //--return order--//
 
-        return view('home',compact('order','total_order','complete_order','cancelled_order','return_order'));
+            return view('home',compact('order','total_order','complete_order','cancelled_order','return_order'));
 
-        // return redirect()->to('/');
+            // return redirect()->to('/');
+        }else{
+            return redirect()->back();
+        }
     }
 
     public function logout()

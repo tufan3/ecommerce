@@ -69,6 +69,7 @@
             <div class="container-fluid">
                 <form action="{{ route('product.update') }}" method="POST" enctype="multipart/form-data">
                     @csrf
+                    <input type="hidden" name="id" id="" value="{{ $product->id }}">
                     <div class="card mb-5">
                         {{-- <div class="card-body"> --}}
                         <div class="row">
@@ -112,7 +113,7 @@
                                                     <select name="brand_id" class="form-control" required>
                                                         <option value="">----SELECT----</option>
                                                         @foreach ($brand as $row)
-                                                            <option value="{{ $row->id }}" @if ($product->brand_id == $row->id) selected @endif>{{ $row->brand_name }}
+                                                            <option value="{{ $row->id }}" @if ($row->id == $product->brand_id) selected @endif>{{ $row->brand_name }}
                                                             </option>
                                                         @endforeach
                                                     </select>
@@ -133,9 +134,11 @@
 
                                                 <div class="form-group">
                                                     <label>Child Category <span class="text-danger"></span></label>
-                                                    <select name="childcategory_id" class="form-control"
-                                                        id="childcategory_id">
+                                                    <select name="childcategory_id" class="form-control" id="childcategory_id">
                                                         <option value="">----SELECT----</option>
+                                                        @foreach ($childcategory as $row)
+                                                            <option value="{{ $row->id }}"  @if ($product->childcategory_id == $row->id) selected @endif > {{ $row->childcategory_name }} </option>
+                                                        @endforeach
                                                     </select>
                                                 </div>
 
@@ -243,21 +246,36 @@
                                         <!-- Main Thumbnail -->
                                         <div class="form-group">
                                             <label>Main Thumbnail <span class="text-danger">*</span></label>
-                                            <input type="file" class="dropify" name="product_thumbnail"
-                                                data-height="140" data-width="140" value="" required/>
+                                            <input type="file" class="dropify" name="product_thumbnail" data-height="140" data-width="140" value=""/>
+
+                                            <input type="hidden" name="old_product_thumbnail" id="" value="{{ $product->product_thumbnail }}">
                                         </div>
 
                                         <!-- Additional Images -->
                                         <div class="form-group">
                                             <label>More Images (Click Add For More Image)</label>
                                             <div id="image-container">
+                                                @php
+                                                    $images = json_decode($product->product_image, true);
+                                                @endphp
+                                                <div class="row">
+                                                    @foreach ($images as $image)
+                                                    <div class="input-group mb-2 col-4">
+                                                        <img src="{{ asset('public/files/product/' . $image) }}" alt="Product Image" style="width: 50px; height: 50px;">
+                                                        <input type="hidden" name="existing_images[]" value="{{ $image }}">
+                                                        <button type="button" class="btn btn-danger remove-image-btn ml-2" data-image="{{ $image }}">X</button>
+                                                    </div>
+                                                @endforeach
+                                                </div>
+
                                                 <div class="input-group mb-2">
                                                     <input type="file" name="product_image[]" class="form-control">
-                                                    <button type="button"
-                                                        class="btn btn-success add-image-btn">Add</button>
+                                                    <button type="button" class="btn btn-success add-image-btn">Add</button>
                                                 </div>
                                             </div>
+
                                         </div>
+
 
 
                                         <!-- Featured Product, Today Deal, Status -->
@@ -297,7 +315,7 @@
                         </div>
                         {{-- </div> --}}
                         <div class="card-footer">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Update</button>
                         </div>
                     </div>
                 </form>
@@ -338,7 +356,7 @@
 </script>
 
 
-<script>
+{{-- <script>
     $(document).ready(function() {
         // Add image field
         $(document).on('click', '.add-image-btn', function() {
@@ -355,6 +373,46 @@
             $(this).closest('.input-group').remove();
         });
     });
+</script> --}}
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+    const imageContainer = document.getElementById('image-container');
+
+    // Remove existing image
+    imageContainer.addEventListener('click', function (e) {
+        if (e.target.classList.contains('remove-image-btn')) {
+            const imageName = e.target.getAttribute('data-image');
+
+            // Hidden input for deleted images
+            const deleteInput = document.createElement('input');
+            deleteInput.type = 'hidden';
+            deleteInput.name = 'delete_images[]';
+            deleteInput.value = imageName;
+            imageContainer.appendChild(deleteInput);
+
+            // Remove the image preview
+            e.target.closest('.input-group').remove();
+        }
+    });
+
+    // Add new image input
+    document.querySelector('.add-image-btn').addEventListener('click', function () {
+        const newInputGroup = document.createElement('div');
+        newInputGroup.className = 'input-group mb-2';
+        newInputGroup.innerHTML = `
+            <input type="file" name="product_image[]" class="form-control">
+            <button type="button" class="btn btn-danger remove-image-btn">X</button>
+        `;
+        imageContainer.appendChild(newInputGroup);
+
+        // Add remove functionality for newly added inputs
+        newInputGroup.querySelector('.remove-image-btn').addEventListener('click', function () {
+            newInputGroup.remove();
+        });
+    });
+});
+
 </script>
 
 

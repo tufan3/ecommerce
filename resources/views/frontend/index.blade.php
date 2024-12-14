@@ -51,19 +51,26 @@
 
     {{-- campaign part --}}
     @isset($campaign)
-    <div class="mt-4">
-        <div class="container">
-            <div class="row">
-                <!-- Char. Item -->
-                <div class="col-lg-4"></div>
-                <div class="col-lg-4 text-center">
-                    <strong style="color: #ff6f61;">{{ $campaign->title }}</strong>
-                    <a href=""><img src="{{ asset($campaign->image) }}" alt="" width="100%" height="100px"></a>
-                </div>
+    @php
+        $start_date = date('Y-m-d',strtotime($campaign->start_date));
+        $end_date = date('Y-m-d',strtotime($campaign->end_date));
+        $current_date = date('Y-m-d');
+    @endphp
+        @if($start_date <= $current_date && $end_date >= $current_date)
+        <div class="mt-4">
+                <div class="container">
+                    <div class="row">
+                        <!-- Char. Item -->
+                        <div class="col-lg-4"></div>
+                        <div class="col-lg-4 text-center">
+                            <strong style="color: #ff6f61;">{{ $campaign->title }}</strong>
+                            <a href=""><img src="{{ asset($campaign->image) }}" alt="" width="100%" height="100px"></a>
+                        </div>
 
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
+        @endif
     @endisset
 
     {{-- brand part --}}

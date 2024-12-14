@@ -237,6 +237,26 @@
           </li>
           {{-- setting part --}}
 
+          {{-- user role part --}}
+          <li class="nav-item">
+            <a href="#" class="nav-link">
+              <i class="nav-icon fas fa-truck"></i>
+              <p>
+                User Role
+                <i class="fas fa-angle-left right"></i>
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="{{ route('admin.order.index') }}" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>User Role</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          {{-- user role part --}}
+
 
 
           <li class="nav-header">Profile</li>
