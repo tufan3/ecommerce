@@ -36,7 +36,8 @@
             </a>
           </li>
 
-
+          {{-- category part --}}
+          @if(Auth::user()->category == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-list-alt"></i>
@@ -80,8 +81,11 @@
               </li>
             </ul>
           </li>
+          @endif
+          {{-- category part --}}
 
           {{-- product part --}}
+          @if(Auth::user()->product == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fab fa-product-hunt"></i>
@@ -105,9 +109,11 @@
               </li>
             </ul>
           </li>
+          @endif
           {{-- product part --}}
 
-          {{-- coupon part --}}
+          {{-- offer part --}}
+          @if(Auth::user()->offer == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-gift"></i>
@@ -131,12 +137,14 @@
               </li>
             </ul>
           </li>
-          {{-- coupon part --}}
+          @endif
+          {{-- offer part --}}
 
           {{-- order part --}}
+          @if(Auth::user()->order == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-truck"></i>
+              <i class="nav-icon fab fa-first-order"></i>
               <p>
                 Orders
                 <i class="fas fa-angle-left right"></i>
@@ -151,9 +159,11 @@
               </li>
             </ul>
           </li>
+          @endif
           {{-- order part --}}
 
           {{-- pickup point part --}}
+          @if(Auth::user()->pickup == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-truck"></i>
@@ -171,12 +181,14 @@
               </li>
             </ul>
           </li>
+          @endif
           {{-- pickup point part --}}
 
           {{-- ticket part --}}
+          @if(Auth::user()->ticket == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-truck"></i>
+              <i class="nav-icon fa fa-ticket-alt"></i>
               <p>
                 Ticket
                 <i class="fas fa-angle-left right"></i>
@@ -191,9 +203,11 @@
               </li>
             </ul>
           </li>
+          @endif
           {{-- Ticket part --}}
 
           {{-- setting part --}}
+          @if(Auth::user()->setting == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
               <i class="nav-icon fas fa-cog"></i>
@@ -235,12 +249,14 @@
               </li>
             </ul>
           </li>
+          @endif
           {{-- setting part --}}
 
           {{-- user role part --}}
+          @if(Auth::user()->userrole == 1)
           <li class="nav-item">
             <a href="#" class="nav-link">
-              <i class="nav-icon fas fa-truck"></i>
+              <i class="nav-icon fa fa-user-alt"></i>
               <p>
                 User Role
                 <i class="fas fa-angle-left right"></i>
@@ -248,13 +264,14 @@
             </a>
             <ul class="nav nav-treeview">
               <li class="nav-item">
-                <a href="{{ route('admin.order.index') }}" class="nav-link">
+                <a href="{{ route('role.index') }}" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>User Role</p>
                 </a>
               </li>
             </ul>
           </li>
+          @endif
           {{-- user role part --}}
 
 

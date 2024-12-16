@@ -9,6 +9,7 @@ use App\Http\Controllers\Admin\AdminController;
 
 Route::get('/admin-login', [App\Http\Controllers\Auth\loginController::class, 'admin_login'])->name('admin.login');
 
+
 Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin'], function (){
     Route::get('/admin/home', 'AdminController@admin')->name('admin.home');
     Route::get('/admin/logout', 'AdminController@logout')->name('admin.logout');
@@ -23,6 +24,7 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::get('/edit/{id}', 'CategoryController@edit');
         Route::post('/update', 'CategoryController@update')->name('category.update');
     });
+
 // global route
     Route::get('/getChildCategories/{id}', 'ProductController@getChildCategories')->name('getChildCategories');
 
@@ -116,6 +118,20 @@ Route::group(['namespace'=>'App\Http\Controllers\Admin', 'middleware'=>'is_admin
         Route::get('/edit/{id}', 'PickupController@edit');
         Route::post('/update', 'PickupController@update')->name('pickuppoint.update');
     });
+
+    //--role route
+    Route::group(['prefix' => 'role'], function (){
+        Route::get('/', 'RoleController@index')->name('role.index');
+        Route::post('/store', 'RoleController@store')->name('role.store');
+        Route::get('/delete/{id}', 'RoleController@destroy')->name('role.delete');
+        // Route::get('/edit/{id}', 'RoleController@edit');
+        Route::get('/edit/{id}', 'RoleController@edit')->name('role.edit');
+        Route::post('/update', 'RoleController@update')->name('role.update');
+
+    });
+
+
+
 
 
 // __setting route__//
