@@ -120,6 +120,9 @@ Route::group(['namespace'=>'App\Http\Controllers\Frontend'], function (){
     Route::get('cancel',function(){
         return redirect()->to('/');
     })->name('cancel');
+
+    //--campaign --//
+    Route::get('/campaign/product/{id}','FrontendController@campaignProducts')->name('frontend.campaign.product');
 });
 
 //--socialtie--//

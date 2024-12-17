@@ -29,7 +29,9 @@ class CampaignController extends Controller
                 ->addColumn('action', function ($row) {
                     $actionbtn = '<a href="#" class="btn btn-info btn-sm edit" data-id="' . $row->id . '" data-toggle="modal" data-target="#editModal"><i class="fas fa-edit"></i></a>
 
-                <a href="' . route('campaign.delete', [$row->id]) . '" id="delete_campaign" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>';
+                <a href="' . route('campaign.delete', [$row->id]) . '" id="delete_campaign" class="btn btn-danger btn-sm"><i class="fas fa-trash"></i>
+
+                <a href="' . route('campaign.product', [$row->id]) . '" id="" class="btn btn-success btn-sm"><i class="fas fa-plus"></i>';
                     return $actionbtn;
                 })
                 ->rawColumns(['action'])

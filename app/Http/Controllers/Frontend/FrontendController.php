@@ -193,5 +193,11 @@ class FrontendController extends Controller
     }
     //---order Check ---//
 
+    //--campaign product--//
+    public function campaignProducts($id){
+        $product = DB::table('campaign_product')->leftJoin('products','campaign_product.product_id','products.id')->select('campaign_product.*','products.product_name','products.product_code','products.product_thumbnail','products.product_slug')->where('campaign_id',$id)->paginate(32);
+        return view('frontend.campaign.product_list',compact('product'));
 
+    }
+    //--campaign product--//
 }

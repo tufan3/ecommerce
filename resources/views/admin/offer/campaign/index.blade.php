@@ -154,6 +154,22 @@
     </div>
     {{-- edit modal --}}
 
+    {{-- campaign product modal --}}
+    <div class="modal fade" id="campaignProductModal" tabindex="-1" aria-labelledby="campaignProductModalLabel" aria-hidden="true" data-backdrop="static">
+        <div class="modal-dialog modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-5" id="campaignProductModalLabel">All Products for Campaign</h5>
+                    <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div id="campaign_product_modal_body"></div>
+            </div>
+        </div>
+    </div>
+    {{-- campaign product modal --}}
+
     {{-- ajax request form edit --}}
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
@@ -236,6 +252,20 @@
         });
     });
 
+</script>
+
+<script>
+    $('body').on('click', '.campaign_product', function(){
+        var campaign_id = $(this).data('id');
+        // alert(id);
+        $.ajax({
+            type: 'GET',
+            url: 'campaign-product/'+campaign_id,
+            success: function(data){
+                $('#campaign_product_modal_body').html(data);
+                }
+        })
+    })
 </script>
 
 {{-- add data without page load --}}

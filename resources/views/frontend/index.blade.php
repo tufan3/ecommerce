@@ -64,7 +64,7 @@
                         <div class="col-lg-4"></div>
                         <div class="col-lg-4 text-center">
                             <strong style="color: #ff6f61;">{{ $campaign->title }}</strong>
-                            <a href=""><img src="{{ asset($campaign->image) }}" alt="" width="100%" height="100px"></a>
+                            <a href="{{ route('frontend.campaign.product',$campaign->id) }}"><img src="{{ asset($campaign->image) }}" alt="" width="100%" height="100px"></a>
                         </div>
 
                     </div>
